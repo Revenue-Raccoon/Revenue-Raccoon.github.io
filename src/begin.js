@@ -1,42 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './begin.css';
 import backgroundImage from './pic/what.png';
+import raccoon from './pic/raccoon.png';
 
 function Begin() {
-    const [currentText, setCurrentText] = useState('RENENUE');
+    const [isVisible, setIsVisible] = useState(false);
 
-    const TypingAnimation = ({ displayText, delay = 0, onFinish }) => {
-        const [typingText, setTypingText] = useState('');
-        const [currentIndex, setCurrentIndex] = useState(0);
-
-        useEffect(() => {
-            if (currentIndex >= displayText.length) {
-                if(onFinish) onFinish(); // If an onFinish function is provided, call it when done typing
-                return;
-            }
-
-            const typingTimer = setTimeout(() => {
-                setTypingText(prevText => prevText + displayText[currentIndex]);
-                setCurrentIndex(prevIndex => prevIndex + 1);
-            }, delay);
-
-            return () => clearTimeout(typingTimer);
-        }, [currentIndex, displayText, delay, onFinish]);
-
-        return <span>{typingText}</span>;
-    };
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
 
     return (
         <div className="container">
             <img className="background-image" src={backgroundImage} alt="background" />
+            <img className="overlay-image float" src={raccoon} alt="overlay" />
             <div className="top-left-images">
-                <h1 className="h1">
-                    <TypingAnimation 
-                        displayText={currentText} 
-                        delay={150} 
-                        onFinish={() => { if(currentText === 'RENENUE') setCurrentText('RACCOON'); }} 
-                    />
-                </h1>
+                <h1 className="h1">REVENUE</h1>
+                <h1 className="hd1">RACCOON</h1>
             </div>
             <div className="button-container">
                 <div className="button">
