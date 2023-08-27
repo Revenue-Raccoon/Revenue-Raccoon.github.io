@@ -1,7 +1,8 @@
 .container {
   width: 360px;
   height: 640px;
-  position: 'relative';
+  position: relative;
+  top: 0;
 }
 
 .background-image {
@@ -9,9 +10,11 @@
   height: 641px;
   left: 0;
   top: 0;
+ 
   position: absolute;
   box-shadow: 1000px 10px 100px rgba(0, 0, 0, 0.25) inset;
   border: 0.50px #352D2D solid;
+  z-index: -1; /* ערך בסיסי */
 }
 
 .overlay-image {
@@ -20,111 +23,44 @@
   left: 0;
   top: 187px;
   position: absolute;
+  z-index: 3; /* אם תרצה שהאוברליי יהיה מעל הכותרת */
 }
 
-.top-left-images {
-  width: 227.81px;
-  height: 116.34px;
-  left: 0;
-  top: 0;
-  position: absolute;
+.h1, .hd1 {
+  color: rgb(0, 231,255);
+  
+  font-size:67px;
+  font-family: 'ATHEWETRIAL-BF649433d70dc6a', sans-serif;
+  z-index: 2; /* ערך בינוני כך שהכותרת תהיה מעל התמונה אבל מתחת לאוברליי */
 }
 
-.centered-image {
-  width: 300px;
-  height: 130.55px;
-  left: 60px;
-  top: 51.04px;
-  position: absolute;
-}
-
-.button-container {
-  width: 262px;
-  height: 63px;
-  left: 49px;
-  top: 549px;
-  position: absolute;
-}
-
-.button {
-  width: 262px;
-  height: 63px;
-  left: 0;
-  top: 0;
-  position: absolute;
-  background: #00A3FF;
-  box-shadow: 0px -50px 36px -28px rgba(255, 255, 255, 0.35) inset;
-  border-radius: 15px;
-  border-left: 1px #00517F solid;
-  border-bottom: 2.50px #00517F solid;
-}
-
-.circle {
-  width: 11.96px;
-  height: 6.70px;
-  left: 227.55px;
-  top: 14.13px;
-  position: absolute;
-  background: white;
-  border-radius: 9999px;
-}
-
-.button-text {
-  width: 155px;
-  height: 32px;
-  left: 79px;
-  top: 5px;
-  position: absolute;
-  color: black;
-  font-size: 35px;
-  font-family: 'Roboto Slab';
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.h1, .hd1{
-  color:rgba(136,164,189,255);
-  font-family: 'REM', sans-serif;
- 
-}
-.h1{
-  margin-left: 40px;
-  margin-top: 40px;
-
-}
-.hd1{
-  margin-left: 180px;
-}
-/* Add this to your CSS */
-@keyframes slideFromLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+@font-face {
+  font-family: 'ATHEWETRIAL-BF649433d70dc6a';
+  src: url('./font/ATHEWETRIAL-BF649433d70dc6a.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .h1 {
-  color: rgba(136,164,189,255);
-  font-family: 'REM', sans-serif;
-  margin-left: 40px;
-  margin-top: 40px;
-  animation: slideFromLeft 1s ease-out forwards; /* 1s means it takes 1 second for the animation. */
-}
-/* הוסף את זה ל-CSS שלך */
-@keyframes slideFromRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  margin-left: 0px;
+ 
+ 
+  animation: slideFromLeft 1s ease-out forwards;
 }
 
 .hd1 {
-  color: rgba(136,164,189,255);
-  font-family: 'REM', sans-serif;
-  margin-left: 180px;
-  animation: slideFromRight 1s ease-out forwards; /* 1s הוא הזמן של האנימציה - שנייה אחת. */
+  margin-left: 10px;
+  margin-top: 40px;
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: floatAnimation 3s infinite;
+  animation-timing-function: ease-in-out;
 }
