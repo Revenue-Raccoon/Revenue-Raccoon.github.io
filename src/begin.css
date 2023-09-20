@@ -1,0 +1,66 @@
+.container {
+  width: 360px;
+  height: 640px;
+  position: relative;
+  top: 0;
+}
+
+.background-image {
+  width: 360px;
+  height: 641px;
+  left: 0;
+  top: 0;
+ 
+  position: absolute;
+  box-shadow: 1000px 10px 100px rgba(0, 0, 0, 0.25) inset;
+  border: 0.50px #352D2D solid;
+  z-index: -1; /* ערך בסיסי */
+}
+
+.overlay-image {
+  width: 360px;
+  height: 454px;
+  left: 0;
+  top: 187px;
+  position: absolute;
+  z-index: 3; /* אם תרצה שהאוברליי יהיה מעל הכותרת */
+}
+
+.h1, .hd1 {
+  color: rgb(0, 231,255);
+  
+  font-size:67px;
+  font-family: 'ATHEWETRIAL-BF649433d70dc6a', sans-serif;
+  z-index: 2; /* ערך בינוני כך שהכותרת תהיה מעל התמונה אבל מתחת לאוברליי */
+}
+
+@font-face {
+  font-family: 'ATHEWETRIAL-BF649433d70dc6a';
+  src: url('./font/ATHEWETRIAL-BF649433d70dc6a.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.h1 {
+  margin-left: 0px;
+ 
+ 
+  animation: slideFromLeft 1s ease-out forwards;
+}
+
+.hd1 {
+  margin-left: 10px;
+  margin-top: 40px;
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: floatAnimation 3s infinite;
+  animation-timing-function: ease-in-out;
+}
