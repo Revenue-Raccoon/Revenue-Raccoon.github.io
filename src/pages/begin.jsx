@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './begin.css';
-import backgroundImage from './pic/what.png';
-import raccoon from './pic/raccoon.png';
-import ButtonComponent from './buttonBegin';
+import 'src/styles/begin.css';
+import backgroundImage from 'src/assets/pic/what.png';
+import raccoon from 'src/assets/pic/raccoon.png';
+import ButtonComponent from '../buttonBegin';
 
 
 function Begin() {
