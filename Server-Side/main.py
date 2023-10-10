@@ -76,43 +76,6 @@ def get_messages_to_chat(get_data):
         emit('error', {'message': 'Invalid message count or chat ID'})
 
     
-@socketio.on('login')
-def handle_login(login_data):
-    email = login_data.get('email')
-    password = login_data.get('password')
-
-    user_id = validate_sign_in(email, password)
-    if user_id:
-        cookie = add_cookie(user_id)
-        if cookie:
-            emit('login_success', {'cookie': cookie}, room=request.sid)
-        else:
-            emit('login_error', {'error_message': 'Failed to generate cookie'}, room=request.sid)
-    else:
-        emit('login_error', {'error_message': 'Wrong password or username'}, room=request.sid)
-
-
-@socketio.on('signup')
-def handle_signup(signup_data):
-    password = signup_data.get('password')
-    email = signup_data.get('email')
-    user_name = signup_data.get('user_name')
-    cookie = generate_cookie()
-    user = User(name=user_name, email=email, password=password, cookie=cookie, id=0)
-    add_user(user)
-    emit('signup_success', {'cookie': cookie}, room=request.sid)
-
-
-@socketio.on('signout')
-def handle_signout(cookie_data):
-    cookie = cookie_data.get('cookie')
-    user_id = cookie_data.get('user_id')
-    if check_cookie_exists(cookie) and get_user_id_from_cookie(cookie) == user_id:
-        delete_cookie(cookie)
-        emit('sign_out_success', room=request.sid)
-    else:
-        emit('sign_out_error', {'error_message': 'cookie does not exist'}, room=request.sid)
-
 
 @socketio.on('delete_user')
 def handle_delete_user(delete_data):

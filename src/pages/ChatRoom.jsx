@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Message from 'src/components/Message.jsx';
-import 'src/styles/ChatRoom.css';
-import { getUserCookie } from '../../chat-page/src/cookieManager';
+import Message from '/src/components/Message.jsx';
+import '/src/styles/ChatRoom.css';
+import { getUserCookie } from '/src/functions/cookieManager.js';
 
 const ChatRoom = ({ socket }) => {
   const [messages, setMessages] = useState([]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import './ChatRoom.css';
+import '/src/styles/ChatRoom.css';
 
 const Message = ({content, sender_id, date}) => (
   <div className="bubbleWrapper">
