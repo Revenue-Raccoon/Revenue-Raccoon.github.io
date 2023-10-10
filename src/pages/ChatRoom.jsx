@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Message from '/src/components/Message.jsx';
 import '/src/styles/ChatRoom.css';
 import { getUserCookie } from '/src/functions/cookieManager.js';
+import Layout from '../components/layout';
+
 
 const ChatRoom = ({ socket }) => {
   const [messages, setMessages] = useState([]);
@@ -62,26 +64,28 @@ const ChatRoom = ({ socket }) => {
   };
 
   return (
-    <div className="chat-room">
-      <div className="messages-list">
-        {Array.isArray(messages) ? (
-          messages.map((message, index) => (
-            <Message key={index} {...message} />
-          ))
-        ) : (
-          <p>No messages to display.</p>
-        )}
+    <Layout>
+      <div className="chat-room">
+        <div className="messages-list">
+          {Array.isArray(messages) ? (
+            messages.map((message, index) => (
+              <Message key={index} {...message} />
+            ))
+          ) : (
+            <p>No messages to display.</p>
+          )}
+        </div>
+        <form className="message-form" onSubmit={handleSendMessage}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Type a message..."
+          />
+          <button type="submit">Send</button>
+        </form>
       </div>
-      <form className="message-form" onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type a message..."
-        />
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    </Layout>
   );
 };
 

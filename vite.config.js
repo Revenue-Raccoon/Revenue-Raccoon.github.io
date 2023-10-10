@@ -22,5 +22,11 @@ export default defineConfig({
       fs: false, // Disable 'fs' polyfill
       path: false, // Disable 'path' polyfill
     },
-  }
+  },
+
+  build: {
+    commonjsOptions: {
+       esmExternals: true 
+    },
+ }
 })

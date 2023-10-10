@@ -3,6 +3,7 @@ import '/src/styles/begin.css';
 import backgroundImage from '/src/assets/pic/what.png';
 import raccoon from '/src/assets/pic/raccoon.png';
 import ButtonComponent from '../components/buttonBegin';
+import Layout from '../components/layout';
 
 
 function Begin() {
@@ -15,16 +16,18 @@ const [isVisible, setIsVisible] = useState(false);
     }, []);
 
     return (
-        <section>
-        <div className="container">
-            <img className="background-image" src={backgroundImage} alt="background" />
-            <img className="overlay-image float" src={raccoon} alt="overlay" />
-            <div className="top-left-images">
-                <h1 className="h1 typing-text">REVENUE</h1>
-                <h1 className="hd1 typing-text">RACCOON</h1>
-            </div>
-       <ButtonComponent/>
-        </div></section>
+        <Layout>
+            <section>
+            <div className="container">
+                <img className="background-image" src={backgroundImage} alt="background" />
+                <img className="overlay-image float" src={raccoon} alt="overlay" />
+                <div className="top-left-images">
+                    <h1 className="h1 typing-text">REVENUE</h1>
+                    <h1 className="hd1 typing-text">RACCOON</h1>
+                </div>
+        <ButtonComponent/>
+            </div></section>
+        </Layout>
     );
 }
 
