@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
 
-const socket = io('https://revenue-raccoon.github.io/');  // Replace with your server's URL
+const socket = io('http://127.0.0.1:5000');  // Replace with your server's URL
 
 export default socket;

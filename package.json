@@ -13,6 +13,7 @@
   "dependencies": {
     "firebase": "^10.4.0",
     "firebaseui": "^6.1.0",
+    "loader": "^2.1.1",
     "mock-aws-s3": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
