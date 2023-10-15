@@ -17,21 +17,14 @@ def get_connection():
     return sqlite3.connect(DB_NAME)
 
 
-def get_user(user_id: str):
+def get_user(user_id):
     with get_connection() as connection:
         cursor = connection.cursor()
         cursor.execute(USER_ID_QUERY.format(user_table=USER_TABLE), (user_id,))
         result = cursor.fetchone()
         if result:
-            user = User(
-                name=result[1],
-                id=result[0],
-                cookie=result[3],
-                password=result[4],
-                email=result[5],
-                avatar=result[6]
-            )
-            user.chats = result[2].split(",") if result[2] else []
+            user = User(id=result[0])
+            user.chats = result[1].split(",") if result[1] else []
             return user
         else:
             return None
@@ -285,6 +278,14 @@ def get_users_in_chat(chat_id: str):
         except Exception:
             return []
 
+def check_and_create_user(user_id):
+    if is_user_exists(user_id):
+        return True  # User exists
+    else:
+        # Create a new user with the provided user_id
+        new_user = User(id=user_id)
+        add_user(new_user)
+        return True  # User created
 
 
 def create_cookie(user_id):

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from '/src/components/Navbar.jsx';
 import socket from '/src/functions/socketConfig.js'
 
-// Import the FirebaseAuth component
-import {FirebaseAuth} from './pages/FirebaseAuth';
+// Import the FirebaseAuth component without curly braces
+import FirebaseAuth from './pages/FirebaseAuth';
 
 // Import other pages
 import ChatRoom from './pages/ChatRoom';
@@ -16,7 +16,7 @@ function App() {
     <UserProvider>
       <Router>
         <div>
-            <Navbar />
+          <Navbar />
           <Routes>
             <Route path="/" element={<Begin />} />
             <Route path="/Chat-Room" element={<ChatRoom socket={socket} />} />

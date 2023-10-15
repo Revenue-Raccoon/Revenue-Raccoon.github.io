@@ -5,7 +5,6 @@ import FirebaseAuth from '/src/pages/FirebaseAuth.jsx';
 
 const Layout = ({ children }) => {
   const { user } = useUser();
-
   return (
     <div>
       <Navbar />

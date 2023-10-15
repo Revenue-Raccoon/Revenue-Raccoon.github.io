@@ -76,27 +76,17 @@ def get_messages_to_chat(get_data):
         emit('error', {'message': 'Invalid message count or chat ID'})
 
     
-
-@socketio.on('delete_user')
-def handle_delete_user(delete_data):
-    user_id = delete_data.get('user_id')
-    cookie = delete_data.get('cookie')
-
-    if check_cookie_exists(cookie) and is_user_exists(user_id) and get_user_id_from_cookie(cookie) == user_id:
-        remove_user(user_id)
-        delete_cookie(cookie)
-        emit('user_deleted', room=request.sid)
+@socketio.on('userSignUp')
+def handle_user_connected(user_id):
+    # Call the check_and_create_user function
+    if check_and_create_user(user_id):
+        # If the function returns True, emit a "userConnectedSuccess" event
+        emit('userConnectedStatus', {'message': 'User created successfully'}, room=request.sid)
     else:
-        emit('error', {'error_message': 'Invalid user or cookie'}, room=request.sid)
+        # If the function returns False, emit a "userConnectedFailure" event
+        emit('userConnectedStatus', {'message': 'User creation failed'}, room=request.sid)
 
-@socketio.on('get_id_from_coockie')
-def handle_get_id_from_coockie(get_data):
-    cookie = get_data.get('cookie')
-    id = get_user_id_from_cookie(cookie)
-    if id:
-        emit('get_id', {'id': id}, room=request.sid)
-    else:
-        emit('get_id_error', {'error_message': 'Invalid coockie'}, room=request.sid)
+
 
 @socketio.on('get_messages_to_chat')
 def get_messages_to_chat(get_data):
@@ -119,16 +109,6 @@ def get_messages_to_chat(get_data):
     # Send the JSON data as a string
     emit('chat_messages', {'messages': json.dumps(formatted_messages)}, room=request.sid)
 
-@socketio.on("get_avatar_by_id")
-def get_avatar(data):
-    user_id = data.get("user_id")
-
-    # Retrieve the user's avatar using your backend logic (replace this with your actual logic)
-    user = get_user(user_id)
-    user_avatar = user.avatar
-
-    # Emit the user's avatar to the frontend along with the sender's ID
-    socketio.emit("getting_avatar", {"sender_id": user_id, "avatar": user_avatar})
 
 
 
