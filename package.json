@@ -13,11 +13,14 @@
   "dependencies": {
     "firebase": "^10.4.0",
     "firebaseui": "^6.1.0",
+    "install": "^0.13.0",
     "loader": "^2.1.1",
     "mock-aws-s3": "^4.0.2",
+    "npm": "^10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
+    "react-router": "^6.17.0",
+    "react-router-dom": "^6.17.0",
     "socket.io-client": "^4.7.2",
     "web-vitals": "^2.1.4"
   },

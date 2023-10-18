@@ -9,22 +9,22 @@ import {
 } from 'firebase/auth';
 import 'firebaseui'; // Import FirebaseUI without specifying an export name
 import 'firebaseui/dist/firebaseui.css'; // Import FirebaseUI CSS
-import { useUser } from '/src/components/UserContext.jsx'; // Import the UserContext
+// import { useUser } from '/src/components/UserContext.jsx'; // Import the UserContext
 import socket from '/src/functions/socketConfig.js';
 
 const FirebaseAuth = () => {
-  const { setUser } = useUser(); // Get the setUser function from the context
+  // const { setUser } = useUser(); // Get the setUser function from the context
 
   useEffect(() => {
-    const firebaseConfig = {
-      apiKey: "your-api-key",
-      authDomain: "your-auth-domain",
-      projectId: "your-project-id",
-      storageBucket: "your-storage-bucket",
-      messagingSenderId: "your-messaging-sender-id",
-      appId: "your-app-id",
-      measurementId: "your-measurement-id"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyC7dmlAC2XpVRuyyrdYDOesTlfPWHFh3aw",
+  authDomain: "racoon-revenue.firebaseapp.com",
+  projectId: "racoon-revenue",
+  storageBucket: "racoon-revenue.appspot.com",
+  messagingSenderId: "937762716736",
+  appId: "1:937762716736:web:e88134c271e114450f33a5",
+  measurementId: "G-H47V90KK0M"
+};
 
     // Initialize Firebase if it hasn't been initialized
     if (!getApps().length) {

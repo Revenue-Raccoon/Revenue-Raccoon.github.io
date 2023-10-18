@@ -9,7 +9,9 @@ import FirebaseAuth from './pages/FirebaseAuth';
 // Import other pages
 import ChatRoom from './pages/ChatRoom';
 import Begin from './pages/begin';
-import { UserProvider } from './components/UserContext';
+import UserProvider from '/src/components/UserContext.jsx';
+
+
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </UserProvider>
+      </UserProvider>
   );
 }
 

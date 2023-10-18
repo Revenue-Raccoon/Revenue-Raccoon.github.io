@@ -1,33 +1,32 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
+// Create a context for user data
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+// Custom hook to access the user context
+export const useUser = () => {
+  return useContext(UserContext);
+};
 
-  const sendUserToServer = (userId) => {
-    // Send the user ID to the server via Socket.IO
-    socket.emit('userConnected', userId);
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null); // Initial user state is null
+
+  // Function to update the user
+  const updateUser = (newUser) => {
+    setUser(newUser);
   };
 
-  useEffect(() => {
-    // Set up event listeners for success and failure
-    socket.on('userConnectedStatus', data);
-
-    // Clean up the event listeners when the component unmounts
-    return () => {
-      socket.off('userConnectedSuccess');
-      socket.off('userConnectedFailure');
-    };
-  }, []);
+  // Create a context value with user and updateUser function
+  const contextValue = {
+    user,
+    updateUser,
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser, userCreatedSuccessfully, userCreationFailed }}>
+    <UserContext.Provider value={contextValue}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export const useUser = () => {
-  return useContext(UserContext);
-};
+export default UserProvider;
