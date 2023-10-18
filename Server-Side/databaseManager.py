@@ -283,14 +283,10 @@ def check_and_create_user(user_id):
         return True  # User exists
     else:
         # Create a new user with the provided user_id
-        new_user = User(id=user_id)
+        new_user = User(user_id)
         add_user(new_user)
         return True  # User created
 
-
-def create_cookie(user_id):
-    with get_connection() as connection:
-        cursor = connection.cursor()
 
 
 

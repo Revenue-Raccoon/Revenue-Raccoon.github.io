@@ -1,20 +1,16 @@
 import React from 'react';
 import Navbar from './Navbar';
-import { useUser } from '/src/components/UserContext.jsx';
-import FirebaseAuth from '/src/pages/FirebaseAuth.jsx';
-
 const Layout = ({ children }) => {
-  const { user } = useUser();
   return (
     <div>
       <Navbar />
       <main>
         {user ? (
-          {children}
+          children // No need for extra curly braces
         ) : (
           // User is not logged in, show the Firebase authentication component
-          <FirebaseAuth />
-        )}
+          window.location.href = '/login'
+          )}
       </main>
     </div>
   );
