@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'; // Corrected import statement
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import UserProvider from 'C:/Users/Magshimim/Desktop/Racoon-Revenue/src/components/UserContext.jsx';
+import UserProvider from './components/UserContext.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

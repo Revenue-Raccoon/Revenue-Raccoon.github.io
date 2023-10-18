@@ -1,5 +1,5 @@
 import React from 'react';
-import 'C:/Users/Magshimim/Desktop/Racoon-Revenue/src/styles/ButtonComponent.css';  // תוסיף את הסטייל שלך לקובץ CSS באותו השם
+import '/src/styles/ButtonComponent.css';  // תוסיף את הסטייל שלך לקובץ CSS באותו השם
 
 const ButtonComponent = () => {
     return (
