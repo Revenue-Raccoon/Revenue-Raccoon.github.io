@@ -1,32 +1,45 @@
-import React, { createContext, useContext, useState } from 'react';
+// UserContext.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { auth } from '/src/functions/firebaseConfig.jsx'; // Make sure you import your Firebase setup
 
-// Create a context for user data
 const UserContext = createContext();
 
-// Custom hook to access the user context
-export const useUser = () => {
+export function useUser() {
   return useContext(UserContext);
-};
+}
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Initial user state is null
+export function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
 
-  // Function to update the user
-  const updateUser = (newUser) => {
-    setUser(newUser);
-  };
+  useEffect(() => {
+    // Firebase auth state change listener
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // If the user is logged in, set the user object
+        setUser({
+          uid: authUser.uid,
+          email: authUser.email,
+          // Add more properties as needed
+        });
+      } else {
+        // If the user logs out, set user to null
+        setUser(null);
+      }
+    });
 
-  // Create a context value with user and updateUser function
-  const contextValue = {
-    user,
-    updateUser,
+    return () => {
+      // Cleanup the listener when the component unmounts
+      unsubscribe();
+    };
+  }, []);
+
+  const setUserObject = (userData) => {
+    setUser(userData);
   };
 
   return (
-    <UserContext.Provider value={contextValue}>
+    <UserContext.Provider value={{ user, setUserObject }}>
       {children}
     </UserContext.Provider>
   );
-};
-
-export default UserProvider;
+}
