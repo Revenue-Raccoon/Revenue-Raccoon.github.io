@@ -1,11 +1,12 @@
 import React from 'react';
 import Navbar from './Navbar';
 import { useUser } from '/src/components/UserContext.jsx';
-
+import { useHistory } from 'react-router-dom';
 
 const Layout = ({ children }) => {
-  const { user } = useUser(); // Use the useUser hook to access the user value
-  console.log("User: ", user);
+  const { user } = useUser();
+  const history = useHistory()
+
   return (
     <div>
       <Navbar />
@@ -14,7 +15,7 @@ const Layout = ({ children }) => {
           children
         ) : (
           // User is not logged in, show the Firebase authentication component
-          window.location.href = '/login'
+          history.push('/login')
         )}
       </main>
     </div>

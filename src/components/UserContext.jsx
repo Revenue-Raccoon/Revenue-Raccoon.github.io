@@ -14,7 +14,9 @@ export function UserProvider({ children }) {
   useEffect(() => {
     // Firebase auth state change listener
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      console.log("user: ", authUser)
       if (authUser) {
+        console.log("Logged in");
         // If the user is logged in, set the user object
         setUser({
           uid: authUser.uid,

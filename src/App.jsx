@@ -9,7 +9,7 @@ import FirebaseAuth from './pages/FirebaseAuth';
 // Import other pages
 import ChatRoom from './pages/ChatRoom';
 import Begin from './pages/begin';
-import UserProvider from '/src/components/UserContext.jsx';
+import { UserProvider }from '/src/components/UserContext.jsx';
 
 
 

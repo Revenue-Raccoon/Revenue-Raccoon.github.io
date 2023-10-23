@@ -81,8 +81,7 @@ def add_user(user: User):
     with get_connection() as connection:
         cursor = connection.cursor()
         user.chats = ','.join(user.chats)
-        new_data = (user.name, user.chats, user.cookie,
-                    user.password, user.email, user.id, user.avatar)
+        new_data = (user.chats, user.id)
         insert_query = f'INSERT INTO {USER_TABLE} (name, chats, coockie, password_hash, email, id, avatar) VALUES {new_data}'
         cursor.execute(insert_query)
         connection.commit()
