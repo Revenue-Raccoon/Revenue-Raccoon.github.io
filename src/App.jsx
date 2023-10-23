@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; // Change 'Routes' to 'Switch'
 import Navbar from '/src/components/Navbar.jsx';
 import socket from '/src/functions/socketConfig.js'
 
@@ -9,9 +9,7 @@ import FirebaseAuth from './pages/FirebaseAuth';
 // Import other pages
 import ChatRoom from './pages/ChatRoom';
 import Begin from './pages/begin';
-import { UserProvider }from '/src/components/UserContext.jsx';
-
-
+import { UserProvider } from '/src/components/UserContext.jsx';
 
 function App() {
   return (
@@ -19,15 +17,15 @@ function App() {
       <Router>
         <div>
           <Navbar />
-          <Routes>
+          <Switch> {/* Change 'Routes' to 'Switch' */}
             <Route path="/" element={<Begin />} />
             <Route path="/Chat-Room" element={<ChatRoom socket={socket} />} />
             {/* Route for Firebase Authentication */}
             <Route path="/login" element={<FirebaseAuth />} />
-          </Routes>
+          </Switch>
         </div>
       </Router>
-      </UserProvider>
+    </UserProvider>
   );
 }
 
