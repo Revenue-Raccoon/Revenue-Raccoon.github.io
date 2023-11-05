@@ -3,6 +3,7 @@ import { initializeApp, getApps} from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyC7dmlAC2XpVRuyyrdYDOesTlfPWHFh3aw",
     authDomain: "racoon-revenue.firebaseapp.com",
@@ -16,5 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase if it hasn't been initialized
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
 
 export { app, auth };

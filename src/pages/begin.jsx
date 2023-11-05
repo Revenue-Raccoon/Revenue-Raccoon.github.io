@@ -14,7 +14,6 @@ const [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
         setIsVisible(true);
     }, []);
-
     return (
         <Layout>
             <section>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Message from '/src/components/Message.jsx';
 import '/src/styles/ChatRoom.css';
-import { getUserCookie } from '/src/functions/cookieManager.js';
 import Layout from '../components/layout';
 
 
@@ -10,7 +9,6 @@ const ChatRoom = ({ socket }) => {
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    const userCookie = getUserCookie();
     socket.emit('get_messages_to_chat', {
       message_count: 10,
       chat_id: '8',

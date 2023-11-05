@@ -26,14 +26,6 @@ const FirebaseAuth = () => {
           if (authResult.additionalUserInfo.isNewUser) {
             socket.emit('userSignUp', authResult.user.uid);
           }
-          console.log("user", authResult.user);
-          if (authResult.user) {
-            // Ensure authResult.user is not null
-            console.log('User signed in:', authResult.user);
-          } else {
-            console.log('User not signed in');
-          }
-          return true;
         },
         signInFailure: function (error) {
           // Handle sign-in failure or conflicts here.
