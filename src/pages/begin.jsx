@@ -3,7 +3,7 @@ import '/src/styles/begin.css';
 import backgroundImage from '/src/assets/pic/what.png';
 import raccoon from '/src/assets/pic/raccoon.png';
 import ButtonComponent from '../components/buttonBegin';
-import Layout from '../components/layout';
+import Layout from '/src/components/layout.jsx';
 
 
 function Begin() {

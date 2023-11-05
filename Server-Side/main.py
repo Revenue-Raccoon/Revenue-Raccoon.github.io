@@ -109,6 +109,17 @@ def get_messages_to_chat(get_data):
     # Send the JSON data as a string
     emit('chat_messages', {'messages': json.dumps(formatted_messages)}, room=request.sid)
 
+@socketio.on('fetchLinks')
+def fetch_links(sid, batch_index):
+    # Replace this with your logic to fetch and complement data
+    # You can use batch_index to determine which data to send back
+
+    # Sample data to be sent back to the client
+    data = [f"Link {i + 1}" for i in range(batch_index * 10, (batch_index + 1) * 10)]
+
+    # Emit the updated data to the client
+    socketio.emit("updateLinks", data, room=sid)
+
 
 
 

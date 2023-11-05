@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import layout from '/src/components/layout.jsx'
 
 function LinkDetailsPage({ link }) {
   // State to manage the active tab
@@ -27,6 +28,7 @@ function LinkDetailsPage({ link }) {
   };
 
   return (
+    <layout>
     <div>
       <div className="image">
         <img src={link.image} alt="Link" />
@@ -55,6 +57,7 @@ function LinkDetailsPage({ link }) {
         <div className="tab-content">{tabContent[activeTab]}</div>
       </div>
     </div>
+    </layout>
   );
 }
 

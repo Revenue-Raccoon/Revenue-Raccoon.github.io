@@ -1,5 +1,3 @@
-// LinkItem.jsx
-
 import React from 'react';
 
 class LinkItem extends React.Component {
@@ -8,9 +6,16 @@ class LinkItem extends React.Component {
     this.state = {
       link: {
         id: '1',
-        price: 19.99,
+        title: 'Example Link',
+        price_per_customer: 19.99,
+        profit_for_sale: 5.0,
+        link: 'https://example.com',
+        description: 'A sample link description',
+        money_made: 1000.0,
+        related_tags: ['tag1', 'tag2', 'tag3'],
         image: 'link-image.jpg',
-        // You can add more properties like 'details', 'information', etc.
+        people_using_link: 0,
+        // You can add more properties as needed
       },
     };
   }
@@ -20,11 +25,16 @@ class LinkItem extends React.Component {
 
     return (
       <div className="link-item">
-        {/* Display rank, price, and image */}
-        <p>Rank: {link.rank}</p>
-        <p>Price: ${link.price}</p>
+        {/* Display title, price, image, and other attributes */}
+        <p>Title: {link.title}</p>
+        <p>Price per Customer: ${link.price_per_customer}</p>
+        <p>Profit for Sale: ${link.profit_for_sale}</p>
+        <p>Description: {link.description}</p>
+        <p>Money Made: ${link.money_made}</p>
+        <p>Related Tags: {link.related_tags.join(', ')}</p>
         <img src={link.image} alt="Link" />
-        <Link to={`/link/${link.id}`}>View Details</Link>
+        <p>People Using Link: {link.people_using_link}</p>
+        <a href={link.link} target="_blank" rel="noopener noreferrer">View Details</a>
       </div>
     );
   }
