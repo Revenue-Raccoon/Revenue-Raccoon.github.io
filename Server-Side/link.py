@@ -1,4 +1,4 @@
-class link:
+class Link:
     def __init__(self, title, price_per_customer, profit_for_sale, link, description, money_made, related_tags, image, people_using_link=0):
         self.title = title
         self.price_per_customer = price_per_customer

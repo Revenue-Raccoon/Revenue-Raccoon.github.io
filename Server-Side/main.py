@@ -80,9 +80,11 @@ def get_messages_to_chat(get_data):
 def handle_user_connected(user_id):
     # Call the check_and_create_user function
     if check_and_create_user(user_id):
+        print("secsede")
         # If the function returns True, emit a "userConnectedSuccess" event
         emit('userConnectedStatus', {'message': 'User created successfully'}, room=request.sid)
     else:
+        print("unsecsede")
         # If the function returns False, emit a "userConnectedFailure" event
         emit('userConnectedStatus', {'message': 'User creation failed'}, room=request.sid)
 
@@ -111,15 +113,13 @@ def get_messages_to_chat(get_data):
 
 @socketio.on('fetchLinks')
 def fetch_links(sid, batch_index):
-    # Replace this with your logic to fetch and complement data
-    # You can use batch_index to determine which data to send back
+    link_ids = list(range(batch_index, batch_index + 10))
 
-    # Sample data to be sent back to the client
-    data = [f"Link {i + 1}" for i in range(batch_index * 10, (batch_index + 1) * 10)]
+    # Fetch detailed link data using get_link for each link in the batch
+    detailed_links = [get_link(link_id) for link_id in link_ids if get_link(link_id)]
 
     # Emit the updated data to the client
-    socketio.emit("updateLinks", data, room=sid)
-
+    emit("updateLinks", detailed_links, room=sid)
 
 
 

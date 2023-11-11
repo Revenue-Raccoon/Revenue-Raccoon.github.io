@@ -1,10 +1,12 @@
 from User import User
 import sqlite3
 from Chat import Chat, Message
+from link import Link
 
 ID_LEN = 16
 
 USER_TABLE = "users"
+LINKS_TABLE = "links"
 CHATS_TABLE = "chats"
 MESSEGES_TABLE = "messeges"
 COOCKIES_TABLE = "coockies"
@@ -81,8 +83,8 @@ def add_user(user: User):
     with get_connection() as connection:
         cursor = connection.cursor()
         user.chats = ','.join(user.chats)
-        new_data = (user.chats, user.id)
-        insert_query = f'INSERT INTO {USER_TABLE} (name, chats, coockie, password_hash, email, id, avatar) VALUES {new_data}'
+        new_data = (user.id, user.liked_links, user.bought_links)
+        insert_query = f'INSERT INTO {USER_TABLE} (id, chats, liked_links, links_bought) VALUES {new_data}'
         cursor.execute(insert_query)
         connection.commit()
         select_query = "SELECT id FROM users WHERE name = ? AND password_hash = ?"
@@ -287,5 +289,45 @@ def check_and_create_user(user_id):
         return True  # User created
 
 
+def get_link(link_id: int) -> Link:
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        query = "SELECT * FROM links WHERE id = ?"
+        cursor.execute(query, (link_id,))
+        row = cursor.fetchone()
+
+        if row:
+            link = Link(
+                title=row[1],
+                price_per_customer=row[2],
+                profit_for_sale=row[3],
+                link=row[4],
+                description=row[5],
+                money_made=row[6],
+                related_tags=row[7],
+                people_using_link=row[8],
+                image=row[9]
+            )
+            return link
+        else:
+            return None
+        
+def add_link(link: Link):
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        new_data = (
+            link.title,
+            link.price_per_customer,
+            link.profit_for_sale,
+            link.link,
+            link.description,
+            link.money_made,
+            link.related_tags,
+            link.people_using_link,
+            link.image
+        )
+        insert_query = f'INSERT INTO links (title, price_per_customer, profit_for_sale, link, description, money_made, related_tags, people_using_link, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        cursor.execute(insert_query, new_data)
+        connection.commit()
 
 

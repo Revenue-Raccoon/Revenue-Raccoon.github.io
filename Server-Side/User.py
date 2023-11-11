@@ -8,6 +8,7 @@ class User:
 
     chats = list()
     liked_links = list()
+    bought_links = list()
     
     def __init__(self, id: int):
         if id == 0:
