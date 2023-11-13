@@ -78,6 +78,7 @@ def get_messages_to_chat(get_data):
     
 @socketio.on('userSignUp')
 def handle_user_connected(user_id):
+    print("send yser")
     # Call the check_and_create_user function
     if check_and_create_user(user_id):
         print("secsede")

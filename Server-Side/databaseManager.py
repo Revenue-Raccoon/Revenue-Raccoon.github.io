@@ -87,9 +87,6 @@ def add_user(user: User):
         insert_query = f'INSERT INTO {USER_TABLE} (id, chats, liked_links, links_bought) VALUES {new_data}'
         cursor.execute(insert_query)
         connection.commit()
-        select_query = "SELECT id FROM users WHERE name = ? AND password_hash = ?"
-        cursor.execute(select_query, (user.name, user.password))
-        connection.commit()
 
 
 def remove_user(user: User):

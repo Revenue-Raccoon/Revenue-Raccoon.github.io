@@ -22,29 +22,22 @@ const FirebaseAuth = () => {
       autoUpgradeAnonymousUsers: true,
       signInSuccessUrl: '/',
       callbacks: {
-        signInSuccessWithAuthResult: async function (authResult, redirectUrl) {
+        signInSuccessWithAuthResult: async function (authResult) {
+          alert('User is new: ' + authResult.additionalUserInfo.isNewUser);
           if (authResult.additionalUserInfo.isNewUser) {
-            // Wrap the socket.emit call in a promise
-            const userSignUpPromise = new Promise((resolve, reject) => {
-              socket.emit('userSignUp', authResult.user.uid, (response) => {
-                if (response && response.message === 'User created successfully') {
-                  resolve(response);
-                } else {
-                  reject(new Error('Failed to create user'));
-                }
-              });
-            });
+            alert("sending user - frontend");
+            socket.emit('userSignUp', authResult.user.uid);
 
-            try {
-              // Wait for the userSignUpPromise to resolve
-              const result = await userSignUpPromise;
-              console.log(result.message);  // This will be 'User created successfully'
-              
-              // Continue with your code here
-            } catch (error) {
-              console.error(error.message);
-              // Handle the error or restart the process as needed
-            }
+            // Listen for the userConnectedStatus event
+            socket.on('userConnectedStatus', (response) => {
+              if (response.message === 'User created successfully') {
+                console.log(response.message);
+                // Continue with your code here
+              } else {
+                console.error(response.message);
+                // Handle the error or restart the process as needed
+              }
+            });
           }
         },
         signInFailure: function (error) {
