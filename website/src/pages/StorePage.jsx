@@ -5,94 +5,73 @@ import Layout from '/src/components/layout.jsx';
 
 function StorePage() {
   const [links, setLinks] = useState([]);
-  const [sortBy, setSortBy] = useState('rank');
-  const [filterBy, setFilterBy] = useState(0);
   const [batchIndex, setBatchIndex] = useState(1);
   const [loadedCount, setLoadedCount] = useState(10);
   const observerRef = useRef(null);
 
-  // Function to fetch links for a given batch index
-  const fetchAndUpdateLinks = (batchIndex) => {
+  const fetchAndUpdateLinks = () => {
     socket.emit('fetchLinks', batchIndex);
-    socket.on('updateLinks', (data) => {
-      setLinks((prevLinks) => [...prevLinks, ...data]);
-    });
   };
 
-  // Use an Intersection Observer to detect when to load more links
   useEffect(() => {
-    fetchAndUpdateLinks(batchIndex);
+    const handleUpdateLinks = (data) => {
+      const parsedData = JSON.parse(data);
+
+      console.log("data", parsedData);
+
+      setLinks(prevLinks => {
+        const uniqueLinks = [...prevLinks, ...parsedData].filter(
+          (link, index, self) => self.findIndex(l => l.id === link.id) === index  
+        );
+        return uniqueLinks;
+      });
+
+      setBatchIndex(prevIndex => prevIndex + 1);
+    };
+
+    socket.on('updateLinks', handleUpdateLinks);
+
     return () => {
-      socket.off('updateLinks');
+      socket.off('updateLinks', handleUpdateLinks);
     };
   }, [batchIndex]);
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          // Increment the batch index when the "Load More" trigger is in the viewport
-          setBatchIndex((prevIndex) => prevIndex + 1);
+    const observerOptions = { rootMargin: '0px 0px 50% 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setLoadedCount(prevCount => prevCount + 10);
         }
-      },
-      { rootMargin: '0px 0px 100% 0px' }
-    );
+      });
+    }, observerOptions);
 
-    if (observerRef.current && sortedAndFilteredLinks.length > loadedCount) {
-      observerRef.current.observe(document.querySelector('.load-more-trigger'));
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
     }
 
     return () => {
       if (observerRef.current) {
-        observerRef.current.disconnect();
+        observer.disconnect();
       }
     };
-  }, [loadedCount, batchIndex]);
+  }, [links, loadedCount]);
 
-  // Modify the sorted and filtered links to include only the desired number
-  const sortedAndFilteredLinks = links
-    .sort((a, b) => {
-      if (sortBy === 'rank') {
-        return a.rank - b.rank;
-      } else if (sortBy === 'price') {
-        return a.price - b.price;
-      } else if (sortBy === 'mostVisited') {
-        // Add your logic for sorting by most visited
-      }
-    })
-    .filter((link) => link.rank >= filterBy)
-    .slice(0, loadedCount);
+  useEffect(() => {
+    fetchAndUpdateLinks();
+
+    return () => {
+      socket.off('updateLinks');
+    };
+  }, []);
 
   return (
     <Layout>
-      <div>
-        <div>
-          <label>Sort By:</label>
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="rank">Rank</option>
-            <option value="price">Price</option>
-            <option value="mostVisited">Most Visited</option>
-          </select>
-        </div>
-        <div>
-          <label>Filter By Rank:</label>
-          <select
-            value={filterBy}
-            onChange={(e) => setFilterBy(parseInt(e.target.value))}
-          >
-            <option value="0">All</option>
-            <option value="3">Above 3</option>
-            <option value="4">Above 4</option>
-            <option value="5">Above 5</option>
-          </select>
-        </div>
-
-        <div className="link-items">
-          {sortedAndFilteredLinks.map((link) => (
+      <div className="link-items">
+        {links.map((link) => (
           <LinkItem key={link.id} link={link} />
-          ))}
-          <div className="load-more-trigger" />
-        </div>
+        ))}
+        <div className="load-more-trigger" ref={observerRef} />
       </div>
     </Layout>
   );

@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_socketio import SocketIO, emit
-from cooclie_manag import *
 from databaseManager import *
 import json
 
@@ -113,16 +112,33 @@ def get_messages_to_chat(get_data):
     emit('chat_messages', {'messages': json.dumps(formatted_messages)}, room=request.sid)
 
 @socketio.on('fetchLinks')
-def fetch_links(sid, batch_index):
+def fetch_links(batch_index):
     link_ids = list(range(batch_index, batch_index + 10))
-
+    detailed_links = list()
     # Fetch detailed link data using get_link for each link in the batch
     detailed_links = [get_link(link_id) for link_id in link_ids if get_link(link_id)]
-
     # Emit the updated data to the client
-    emit("updateLinks", detailed_links, room=sid)
+
+    formatted_messages = [{
+            "title": link.title,
+            "price_per_customer": link.price_per_customer,
+            "profit_for_sale": link.profit_for_sale,
+            "link": link.link,
+            "description": link.description,
+            "money_made": link.money_made,
+            "related_tags": link.related_tags,
+            "people_using_link": link.people_using_link,
+            "image": link.image,
+            "id": link.id
+    } for link in detailed_links]
+    emit("updateLinks", json.dumps(formatted_messages), room=request.sid)
+
 
 
 
 if __name__ == '__main__':
+    # exampleLink = Link("example", 30, 20, "https://www.sefaria.org.il/texts", "Jeuish libery", 30, ["jeuish", "website"], "https://images.pexels.com/photos/13633065/pexels-photo-13633065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+
+    # add_link(exampleLink)
+
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

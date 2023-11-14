@@ -12,7 +12,7 @@ MESSEGES_TABLE = "messeges"
 COOCKIES_TABLE = "coockies"
 USER_ID_QUERY = "SELECT * FROM {user_table} WHERE id = ?"
 ADD_USER_QUERY = "INSERT INTO {user_table} () VALUES (?, ?, ?)"
-DB_NAME = "Server-Side\database.db"
+DB_NAME = "Server-Side/database.db"
 
 
 def get_connection():
@@ -82,11 +82,19 @@ def get_messege(messege_id: str):
 def add_user(user: User):
     with get_connection() as connection:
         cursor = connection.cursor()
-        user.chats = ','.join(user.chats)
-        new_data = (user.id, user.liked_links, user.bought_links)
-        insert_query = f'INSERT INTO {USER_TABLE} (id, chats, liked_links, links_bought) VALUES {new_data}'
-        cursor.execute(insert_query)
+
+        # Convert lists to strings using ',' as a delimiter
+        chats = ','.join(user.chats) if user.chats else ""
+        liked_links = ','.join(user.liked_links) if user.liked_links else ""
+        bought_links = ','.join(user.bought_links) if user.bought_links else ""
+
+        new_data = (user.id, chats, liked_links, bought_links)
+        # Use placeholders in the query and pass values as a tuple
+        insert_query = f'INSERT INTO {USER_TABLE} (id, chats, liked_links, links_bought) VALUES (?, ?, ?, ?)'
+        cursor.execute(insert_query, new_data)
+
         connection.commit()
+
 
 
 def remove_user(user: User):
@@ -286,6 +294,7 @@ def check_and_create_user(user_id):
         return True  # User created
 
 
+# Modify the get_link function
 def get_link(link_id: int) -> Link:
     with get_connection() as connection:
         cursor = connection.cursor()
@@ -301,7 +310,7 @@ def get_link(link_id: int) -> Link:
                 link=row[4],
                 description=row[5],
                 money_made=row[6],
-                related_tags=row[7],
+                related_tags=row[7].split(','),
                 people_using_link=row[8],
                 image=row[9]
             )
@@ -319,12 +328,15 @@ def add_link(link: Link):
             link.link,
             link.description,
             link.money_made,
-            link.related_tags,
+            ','.join(link.related_tags),
             link.people_using_link,
             link.image
         )
         insert_query = f'INSERT INTO links (title, price_per_customer, profit_for_sale, link, description, money_made, related_tags, people_using_link, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
         cursor.execute(insert_query, new_data)
         connection.commit()
+
+
+
 
 

@@ -1,43 +1,38 @@
-import React from 'react';
+// GymDumbbells.jsx
+import React from "react";
+import styles from "/src/styles/LinkItem.module.css";
 
-class LinkItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      link: {
-        id: '1',
-        title: 'Example Link',
-        price_per_customer: 19.99,
-        profit_for_sale: 5.0,
-        link: 'https://example.com',
-        description: 'A sample link description',
-        money_made: 1000.0,
-        related_tags: ['tag1', 'tag2', 'tag3'],
-        image: 'link-image.jpg',
-        people_using_link: 0,
-        // You can add more properties as needed
-      },
-    };
-  }
+function LinkItem(props) {
+  const { link } = props;
+  console.log("Image Path:", link.image);
+  return (
+    <>
+      <section className={styles.mainContainer}>
+        <div className={styles.imageWrapper}>
+          <img loading="lazy" src={link.image} className={styles.mainImage} />
+          <a href={link.image} className={styles.secondaryImage} />
+        </div>
 
-  render() {
-    const { link } = this.state;
+        <div className={styles.productDetails}>
+          <h2 className={styles.title}>{link.title}</h2>
 
-    return (
-      <div className="link-item">
-        {/* Display title, price, image, and other attributes */}
-        <p>Title: {link.title}</p>
-        <p>Price per Customer: ${link.price_per_customer}</p>
-        <p>Profit for Sale: ${link.profit_for_sale}</p>
-        <p>Description: {link.description}</p>
-        <p>Money Made: ${link.money_made}</p>
-        <p>Related Tags: {link.related_tags.join(', ')}</p>
-        <img src={link.image} alt="Link" />
-        <p>People Using Link: {link.people_using_link}</p>
-        <a href={link.link} target="_blank" rel="noopener noreferrer">View Details</a>
-      </div>
-    );
-  }
+          <div className={styles.priceContainer}>
+            <div className={styles.priceLabel}>Price for</div>
+            <div className={styles.customerPrice}>customer:</div>
+          </div>
+
+          <div className={styles.profitContainer}>
+            <div className={styles.profitLabel}>Profit per</div>
+          </div>
+
+          <div className={styles.priceValues}>
+            <div className={styles.priceValue}>${link.price_per_customer}</div>
+            <div className={styles.profitValue}>${link.profit_for_sale}</div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
 
 export default LinkItem;
