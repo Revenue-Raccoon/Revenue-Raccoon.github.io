@@ -7,17 +7,21 @@
 }
 
 .imageWrapper {
-  overflow: visible;
+  overflow: hidden; /* Change to hidden to clip the rounded corners */
   position: relative;
+  width: 100%; /* Set the width to 100% */
   aspect-ratio: 1.3177966101694916;
   padding: 12px 20px 50px;
+  padding-bottom: 0px;
+  border-radius: 15px 15px 0 0; /* Add border-radius for rounded corners */
 }
 
 .mainImage {
-  width: 100%;
+  width: 100%; /* Set the width to 100% */
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 15px 15px 0 0; /* Match the border-radius from .imageWrapper */
 }
 
 .secondaryImage {
