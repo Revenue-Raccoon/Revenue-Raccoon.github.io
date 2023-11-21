@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '/src/styles/begin.css';
-import backgroundImage from '/src/assets/pic/what.png';
-import raccoon from '/src/assets/pic/raccoon.png';
-import ButtonComponent from '../components/buttonBegin';
+import ButtonComponent from '/src/components/buttonBegin.jsx';
 import Layout from '/src/components/layout.jsx';
 
 
@@ -18,8 +16,8 @@ const [isVisible, setIsVisible] = useState(false);
         <Layout>
             <section>
             <div className="container">
-                <img className="background-image" src={backgroundImage} alt="background" />
-                <img className="overlay-image float" src={raccoon} alt="overlay" />
+                <img className="background-image" src='/src/assets/pic/what.png' alt="background" />
+                <img className="overlay-image float" src='/src/assets/pic/raccoon.png' alt="overlay" />
                 <div className="top-left-images">
                     <h1 className="h1 typing-text">REVENUE</h1>
                     <h1 className="hd1 typing-text">RACCOON</h1>

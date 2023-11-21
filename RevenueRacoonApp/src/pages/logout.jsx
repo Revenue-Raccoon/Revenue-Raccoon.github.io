@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
-import { getAuth, signOut } from 'firebase/auth';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { CommonActions } from "@react-navigation/native";
 
 const Logout = () => {
   const auth = getAuth();
-  const history = useHistory();
 
   useEffect(() => {
     const handleLogout = async () => {
       try {
         await signOut(auth);
-        // Redirect to the login or home page after logout
-        history.push('/login'); // Replace with the path you want to redirect to
+        // Redirect to login screen
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Login" }],
+          })
+        );
       } catch (error) {
-        console.error('Error logging out:', error);
+        console.error("Error logging out:", error);
         // Handle any error or show a message to the user
       }
     };

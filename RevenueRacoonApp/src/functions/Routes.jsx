@@ -1,13 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import FirebaseAuth from '/src/pages/FirebaseAuth';
-import TryComponent from '/src/components/try.jsx';
-import ChatRoom from '/src/pages/ChatRoom';
-import Begin from '/src/pages/begin';
-import StorePage from '/src/pages/StorePage';
-import Logout from '../pages/logout';
-import Profile from '/src/pages/profile_page.jsx'; // Import the Profile component
+import FirebaseAuth from "../pages/FirebaseAuth.jsx";
+import TryComponent from "../components/try.jsx";
+import ChatRoom from "../pages/ChatRoom";
+import Begin from "../pages/begin";
+import StorePage from "../pages/StorePage";
+import Logout from "../pages/logout";
+import Profile from "../pages/profile_page.jsx"; // Import the Profile component
 
 const Stack = createStackNavigator();
 

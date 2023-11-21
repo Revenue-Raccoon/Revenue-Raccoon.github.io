@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import LinkItem from '/src/components/LinkItem.jsx';
-import socket from '/src/functions/socketConfig.js';
-import Layout from '/src/components/layout.jsx';
+import LinkItem from '../components/LinkItem.jsx';
+import socket from '../functions/socketConfig.js';
+import Layout from '../components/layout.jsx';
 
 function StorePage() {
   const [links, setLinks] = useState([]);

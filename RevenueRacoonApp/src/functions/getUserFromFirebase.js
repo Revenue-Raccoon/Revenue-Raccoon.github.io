@@ -17,3 +17,5 @@ export function getUserObject() {
     });
   });
 }
+
+export default getUserObject

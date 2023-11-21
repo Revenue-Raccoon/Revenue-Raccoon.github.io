@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '/src/components/layout';
-import { getUserObject } from '/src/functions/getUserFromFirebase.js'; // Import the getUserObject function
+import Layout from '../components/layout';
+import { getUserObject } from '../functions/getUserFromFirebase.js'; // Import the getUserObject function
 import { updateProfile, getAuth } from 'firebase/auth';
 
 const Profile = () => {

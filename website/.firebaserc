@@ -1,6 +1,7 @@
 {
   "projects": {
-    "website": "racoon-revenue"
+    "website": "racoon-revenue",
+    "default": "racoon-revenue"
   },
   "targets": {},
   "etags": {}

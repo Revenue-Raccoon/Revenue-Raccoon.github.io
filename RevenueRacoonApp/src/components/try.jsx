@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { View, Text } from 'react-native';
-import { getUserObject } from './firebase';
+import { getUserObject } from '../functions/getUserFromFirebase.js';
 
 const TryComponent = () => {
 

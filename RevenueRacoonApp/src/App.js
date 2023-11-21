@@ -4,7 +4,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';  
 import { StyleSheet, View } from 'react-native';
 
-import Routes from 'RevenueRacoonApp/functions/Routes.jsx';
+import Routes from '../functions/Routes.jsx';
 
 export default function App() {
 

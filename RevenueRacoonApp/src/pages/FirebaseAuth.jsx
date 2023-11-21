@@ -7,10 +7,10 @@ import {
   EmailAuthProvider,
 } from 'firebase/auth';
 import 'firebaseui';
-import 'firebaseui/dist/firebaseui.css';
+import 'RevenueRacoonApp/node_modules/firebaseui/dist/firebaseui.css';
 
-import socket from '/src/functions/socketConfig.js';
-import { app } from '/src/functions/firebaseConfig.jsx'; // Import the Firebase app
+import socket from '../functions/socketConfig.js';
+import { app } from '../functions/firebaseConfig.jsx'; // Import the Firebase app
 
 const FirebaseAuth = () => {
   useEffect(() => {

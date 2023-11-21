@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "937762716736",
+    "firebase_url": "https://racoon-revenue-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "racoon-revenue",
+    "storage_bucket": "racoon-revenue.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937762716736:android:1905068deabdf09c0f33a5",
+        "android_client_info": {
+          "package_name": "revenueRacoon.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937762716736-lg11t08fgsbqknneumo1phjs7k6tar27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJvh6oqUk8MSr0Bbx7GfpXVF4QcdWNDCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937762716736-lg11t08fgsbqknneumo1phjs7k6tar27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

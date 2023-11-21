@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, TextInput, Button } from 'react-native';
 import io from 'socket.io-client';
 
-import Message from './Message';  
-import styles from './ChatRoomStyles';
+import Message from '../components/Message';  
+import styles from '../styles/ChatRoomStyles';
 
 const socket = io('http://localhost:3000'); // Connect socket
 
