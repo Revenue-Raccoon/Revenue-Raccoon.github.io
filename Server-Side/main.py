@@ -137,8 +137,4 @@ def fetch_links(batch_index):
 
 
 if __name__ == '__main__':
-    # exampleLink = Link("example", 30, 20, "https://www.sefaria.org.il/texts", "Jeuish libery", 30, ["jeuish", "website"], "https://images.pexels.com/photos/13633065/pexels-photo-13633065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-
-    # add_link(exampleLink)
-
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, debug=True, use_reloader=False, allow_unsafe_werkzeug=True)
