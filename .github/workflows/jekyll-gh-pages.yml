@@ -22,7 +22,7 @@ jobs:
       run: npm install  # or yarn install if you're using Yarn
 
     - name: Build Production Code
-      run: npm run build  # Replace with your build command for Vite
+      run: npm start # Replace with your build command for Vite
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
