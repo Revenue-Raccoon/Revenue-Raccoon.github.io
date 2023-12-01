@@ -27,14 +27,12 @@ const Layout = ({ children }) => {
   return (
 
     <SafeAreaView>
-      <Navbar>
       <main>
         {user ? (
           // User is signed in, display the child components
           children
         ) : null}
       </main>
-      </Navbar>
       </SafeAreaView>
   );
 };
