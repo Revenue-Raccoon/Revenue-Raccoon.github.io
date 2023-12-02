@@ -7,7 +7,7 @@ import {
   EmailAuthProvider,
 } from 'firebase/auth';
 import 'firebaseui';
-import 'RevenueRacoonApp/node_modules/firebaseui/dist/firebaseui.css';
+import 'firebaseui/dist/firebaseui.css';
 
 import socket from '../functions/socketConfig.js';
 import { app } from '../functions/firebaseConfig.jsx'; // Import the Firebase app
