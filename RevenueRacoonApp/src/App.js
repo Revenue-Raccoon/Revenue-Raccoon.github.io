@@ -4,7 +4,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';  
 import { StyleSheet, View } from 'react-native';
 
-import Routes from '../functions/Routes.jsx';
+import Routes from '../src/functions/Routes';
 
 export default function App() {
 
