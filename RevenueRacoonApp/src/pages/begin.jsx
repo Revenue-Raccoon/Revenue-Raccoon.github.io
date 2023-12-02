@@ -17,7 +17,7 @@ const BeginScreen = () => {
 
   return (
     <Layout>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Image 
           source={require('../assets/pic/what.png')}
           style={styles.backgroundImage} 
@@ -34,7 +34,7 @@ const BeginScreen = () => {
         </View>
 
         <Button title="Get Started" />
-      </View>
+      </View> */}
     </Layout>
   );
 }
