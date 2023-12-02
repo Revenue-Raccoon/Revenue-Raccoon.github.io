@@ -15,9 +15,6 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Chat" component={ChatScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Login" component={FirebaseAuth} />
         <Stack.Screen name="TryComponent" component={TryComponent} />
         <Stack.Screen name="ChatRoom" component={ChatRoom} />

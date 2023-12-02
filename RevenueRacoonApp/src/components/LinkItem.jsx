@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import styles from './LinkItemStyles';
+import styles from '../styles/linkItemStyles';
 
 const LinkItem = ({link}) => (
   <View style={styles.container}>

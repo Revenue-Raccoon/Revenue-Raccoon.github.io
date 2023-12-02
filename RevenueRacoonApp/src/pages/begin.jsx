@@ -24,7 +24,7 @@ const BeginScreen = () => {
         />
 
         <Image
-          source={require('../assets/pic/raccoon.png')}  
+          source={require('../assets/pic/what.png')}  
           style={styles.raccoonImage}
         />
 
