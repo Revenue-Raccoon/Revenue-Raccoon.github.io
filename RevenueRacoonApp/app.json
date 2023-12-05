@@ -19,13 +19,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "D:/Yoel-Stuff/Revenue-Raccoon.github.io/RevenueRacoonApp/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "pro.revenueraccoon.revenueracoonapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "D:/Yoel-Stuff/Revenue-Raccoon.github.io/RevenueRacoonApp/assets/favicon.png"
     },
     "extra": {
       "eas": {
