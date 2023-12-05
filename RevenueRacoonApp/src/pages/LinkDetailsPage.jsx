@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import layout from '/src/components/layout.jsx'
 
 function LinkDetailsPage({ link }) {
   // State to manage the active tab

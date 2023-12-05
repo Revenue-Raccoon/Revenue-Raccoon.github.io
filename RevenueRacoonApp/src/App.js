@@ -1,12 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';  
 import { StyleSheet, View, Text } from 'react-native';
+import Routes from './functions/Routes';
 export default function App() {
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.testText}>Hello, this is a test!</Text>
     </View>
   );
 }

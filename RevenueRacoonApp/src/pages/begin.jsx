@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Image, Text } from 'react-native';
 import styles from '../styles/beginStyles';
 
-import Layout from '../components/layout';
 import Button from '../components/buttonBegin';
 
 const BeginScreen = () => {
@@ -16,8 +15,7 @@ const BeginScreen = () => {
   }, []);
 
   return (
-    <Layout>
-      {/* <View style={styles.container}>
+      <View style={styles.container}>
         <Image 
           source={require('../assets/pic/what.png')}
           style={styles.backgroundImage} 
@@ -34,8 +32,7 @@ const BeginScreen = () => {
         </View>
 
         <Button title="Get Started" />
-      </View> */}
-    </Layout>
+      </View>
   );
 }
 

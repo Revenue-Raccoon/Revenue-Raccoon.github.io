@@ -22,7 +22,8 @@
         "foregroundImage": "D:/Yoel-Stuff/Revenue-Raccoon.github.io/RevenueRacoonApp/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "pro.revenueraccoon.revenueracoonapp"
+      "package": "pro.revenueraccoon.revenueracoonapp",
+      "jsEngine": "hermes"
     },
     "web": {
       "favicon": "D:/Yoel-Stuff/Revenue-Raccoon.github.io/RevenueRacoonApp/assets/favicon.png"

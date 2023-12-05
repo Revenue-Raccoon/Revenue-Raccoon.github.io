@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import LinkItem from '../components/LinkItem.jsx';
 import socket from '../functions/socketConfig.js';
-import Layout from '../components/layout.jsx';
 
 function StorePage() {
   const [links, setLinks] = useState([]);
@@ -67,14 +66,13 @@ function StorePage() {
   }, []);
 
   return (
-    <Layout>
+
       <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
         {links.map((link) => (
           <LinkItem key={link.id} link={link} />
         ))}
         <View style={{ height: 50 }} ref={observerRef} />
       </ScrollView>
-    </Layout>
   );
 }
 

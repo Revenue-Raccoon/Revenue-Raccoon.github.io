@@ -1,5 +1,6 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getApps, initializeApp } from 'firebase/app';
+import { getAuth, initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC7dmlAC2XpVRuyyrdYDOesTlfPWHFh3aw",
@@ -11,14 +12,19 @@ const firebaseConfig = {
   measurementId: "G-H47V90KK0M"
 };
 
-// Initialize Firebase if it hasn't been initialized
-const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Initialize Firebase only if it hasn't been initialized yet
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
+}
 
-// // Enable token auto-refresh and set the inactivity period
-// setTokenAutoRefreshEnabled(auth, true);
-
-// // Set the token inactivity period to 1 hour (3600 seconds)
-// auth.setTokenAutoRefreshEnabled(auth, true, 3600);
-
+// Initialize Auth only if it hasn't been initialized yet
+const app = getApps()[0]; // Assuming the app is the first initialized app
+let auth;
+if (!getAuth(app)) {
+  const auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+  });
+} else {
+  auth = getAuth(app);
+}
 export { app, auth };

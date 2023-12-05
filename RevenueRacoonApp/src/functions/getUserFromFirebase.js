@@ -1,6 +1,4 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
-const auth = getAuth();
+import auth from '../functions/firebaseConfig'
 
 export function getUserObject() {
   return new Promise((resolve, reject) => {
