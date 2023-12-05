@@ -11,8 +11,8 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="TryComponent" component={TryComponent} />
         <Stack.Screen name="Begin" component={BeginScreen} />
+        <Stack.Screen name="TryComponent" component={TryComponent} />
         <Stack.Screen name="Stroe page" component={StorePage} />
       </Stack.Navigator>
     </NavigationContainer>
