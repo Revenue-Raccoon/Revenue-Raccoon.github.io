@@ -1,4 +1,4 @@
-ID_FILE = 'Server-Side\id_saver_file.txt'
+ID_FILE = 'Server-Side/id_saver_file.txt'
 ID_MAKER = {
     "messeges": 1,
     "chats": 4,
