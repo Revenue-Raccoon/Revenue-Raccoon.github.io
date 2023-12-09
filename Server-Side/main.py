@@ -3,6 +3,10 @@ from flask_socketio import SocketIO, emit
 from databaseManager import *
 import json
 
+import eventlet
+eventlet.monkey_patch()
+
+
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")  # Replace with your frontend's URL
 
