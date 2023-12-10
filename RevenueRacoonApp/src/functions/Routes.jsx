@@ -5,6 +5,7 @@ import TryComponent from "../components/try.jsx";
 // import BeginScreen from "../pages/begin.jsx"
 import StorePage from "../pages/StorePage.jsx"
 import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
+import register from "../components/register.jsx";
 
 const Stack = createStackNavigator();
 
@@ -12,12 +13,17 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen 
+          name="register" 
+          component={register} 
+          options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
+        />
 
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="openLoginOrRegister" 
           component={openLoginOrRegister} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
-        />
+        /> */}
         {/* <Stack.Screen 
           name="Begin" 
           component={BeginScreen} 
