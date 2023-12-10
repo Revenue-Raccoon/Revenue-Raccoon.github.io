@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/Yoel-Stuff/Revenue-Raccoon.github.io/Server-Side/database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1481"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="5" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainchats"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE your_table_name (
-    id INTEGER PRIMARY KEY,
-    title TEXT,
-    price_per_customer DECIMAL,
-    profit_for_sale DECIMAL,
-    link TEXT,
-    description TEXT,
-    money_made DECIMAL,
-    related_tags TEXT,
-    people_using_link INTEGER,
-    image TEXT
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/Yoel-Stuff/Revenue-Raccoon.github.io/Server-Side/database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1481"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="0" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainchats"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE AffiliateLinks (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    url TEXT NOT NULL,
+    user_id INTEGER NOT NULL,
+    people_clicking TEXT
 );
 </sql><current_tab id="0"/></tab_sql></sqlb_project>

@@ -10,6 +10,7 @@ LINKS_TABLE = "links"
 CHATS_TABLE = "chats"
 MESSEGES_TABLE = "messeges"
 COOCKIES_TABLE = "coockies"
+AFFILATE_TABLE = "AffiliateLinks"
 USER_ID_QUERY = "SELECT * FROM {user_table} WHERE id = ?"
 ADD_USER_QUERY = "INSERT INTO {user_table} () VALUES (?, ?, ?)"
 DB_NAME = "Server-Side/database.db"
@@ -337,6 +338,52 @@ def add_link(link: Link):
         connection.commit()
 
 
+def get_affiliate_links_by_url(url):
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        query = f"SELECT * FROM {AFFILATE_TABLE} WHERE url = ?"
+        cursor.execute(query, (url,))
+        rows = cursor.fetchall()
+        return rows  # Each row represents an affiliate link
+
+
+def add_affiliate_link(id, title, url, user_id, people_clicking):
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        people_clicking_str = ','.join(people_clicking) if people_clicking else ''
+        query = f"INSERT INTO {AFFILATE_TABLE} (id, title, url, user_id, people_clicking) VALUES (?, ?, ?, ?, ?)"
+        cursor.execute(query, (id, title, url, user_id, people_clicking_str))
+        connection.commit()
+
+
+
+def add_ip_to_affiliate_link(ip_address, url):
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        # First, get the current IP list
+        select_query = f"SELECT people_clicking FROM {AFFILATE_TABLE} WHERE url = ?"
+        cursor.execute(select_query, (url,))
+        result = cursor.fetchone()
+        if result:
+            current_ips = set(result[0].split(',')) if result[0] else set()
+            # Add new IP if not already present
+            if ip_address not in current_ips:
+                current_ips.add(ip_address)
+                update_query = f"UPDATE {AFFILATE_TABLE} SET people_clicking = ? WHERE url = ?"
+                cursor.execute(update_query, (','.join(current_ips), url))
+                connection.commit()
+
+
+def get_ip_list_of_affiliate_link(url):
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        query = f"SELECT people_clicking FROM {AFFILATE_TABLE} WHERE url = ?"
+        cursor.execute(query, (url,))
+        result = cursor.fetchone()
+        if result:
+            return result[0].split(',')  # Returns a list of IPs
+        else:
+            return []
 
 
 
