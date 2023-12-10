@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TryComponent from "../components/try.jsx";
 // import BeginScreen from "../pages/begin.jsx"
 import StorePage from "../pages/StorePage.jsx"
-import LoginPage from "../components/loginPage.jsx";
+import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
 
 const Stack = createStackNavigator();
 
@@ -12,9 +12,10 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen 
-          name="hh" 
-          component={LoginPage} 
+          name="openLoginOrRegister" 
+          component={openLoginOrRegister} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
         />
         {/* <Stack.Screen 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from '../styles/loginPageStyle';
+import styles from '../styles/openLoginOrRegisterStyle';
 
-const LoginPage = () => {
-
+const openLoginOrRegister = () => {
+    
     return (
         
         <View style={styles.container}>
@@ -29,4 +29,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default openLoginOrRegister;
