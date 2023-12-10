@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import styles from '../styles/registerStyle';
 import {LinearGradient} from 'expo-linear-gradient';
-const register = () => {
+const Register = () => {
   return (
     <View style={styles.container}>
        <LinearGradient
@@ -55,4 +55,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;

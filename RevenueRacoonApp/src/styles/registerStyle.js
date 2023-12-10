@@ -28,7 +28,7 @@ const registerStyle = StyleSheet.create({
         textAlign: 'center',
         color: '#FFBF00',
         fontSize: 30,
-        fontFamily: 'Poppins',
+        fontFamily: 'David',
         fontWeight: '600',
       },
       inputContainer: {
@@ -46,7 +46,7 @@ const registerStyle = StyleSheet.create({
         height: '100%',
         paddingLeft: 20,
         fontSize: 15,
-        fontFamily: 'Poppins',
+        fontFamily: 'David',
       },
       loginWithContainer: {
         width: 330,
@@ -59,7 +59,7 @@ const registerStyle = StyleSheet.create({
       loginWithText: {
         color: 'white',
         fontSize: 14,
-        fontFamily: 'Poppins',
+        fontFamily: 'David',
       },
       registerButton: {
         width: 316.80,
@@ -74,7 +74,7 @@ const registerStyle = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontSize: 15,
-        fontFamily: 'Poppins',
+        fontFamily: 'David',
         fontWeight: '700',
         marginTop: 15,
       },

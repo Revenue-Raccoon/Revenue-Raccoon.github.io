@@ -5,7 +5,7 @@ import TryComponent from "../components/try.jsx";
 // import BeginScreen from "../pages/begin.jsx"
 import StorePage from "../pages/StorePage.jsx"
 import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
-import register from "../components/register.jsx";
+import Register from "../components/register.jsx";
 
 const Stack = createStackNavigator();
 
@@ -14,8 +14,8 @@ function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen 
-          name="register" 
-          component={register} 
+          name="Register" 
+          component={Register} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
         />
 
