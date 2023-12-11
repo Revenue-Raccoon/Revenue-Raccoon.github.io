@@ -150,8 +150,6 @@ def handle_link():
             return redirect(url)
         else:
             return render_template('404.html'), 404
-    else:
-        return render_template('404.html'), 404
 
 
 
