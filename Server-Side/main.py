@@ -142,10 +142,14 @@ def fetch_links(batch_index):
 def handle_link():
     # Extract the 'link' query parameter from the URL
     link_param = request.args.get('link', default=None)
-
+    client_ip = request.remote_addr
     if link_param:
         url = get_url_of_affiliate_link((link_param))
-        return redirect(url)
+        if url:
+            add_ip_to_affiliate_link(client_ip, url)
+            return redirect(url)
+        else:
+            return render_template('404.html'), 404
     else:
         return render_template('404.html'), 404
 
