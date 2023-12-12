@@ -1,8 +1,12 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native'; // Removed CheckBox from here
+import CheckBox from 'expo-checkbox';
 import styles from '../styles/registerStyle';
-import {LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+// ... other necessary imports ..
 const Register = () => {
+  const [isSelected, setSelection] = useState(false);
   return (
     <View style={styles.container}>
        <LinearGradient
@@ -13,9 +17,18 @@ const Register = () => {
       >
         {/* יצירת גרדיאנט באמצעות LinearGradient */}
       </LinearGradient>
-      <View style={[styles.bottomGradient, { transform: [{ rotate: '179.91deg' }] }]}>
-        {/* יצירת גרדיאנט באמצעות שכבות של View */}
-      </View>
+      <LinearGradient
+      colors={[ 'rgba(143, 0, 255, 0.80)', 'rgba(0, 0, 0, 0)']}
+      style={styles.bottomGradient}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+    />
+    <TouchableOpacity  style={styles.button1}>
+      <Image
+        source={{ uri: 'https://i.ibb.co/MMxMb4b/image.png' }} // Replace with your image URL if needed
+        style={styles.image}
+      />
+    </TouchableOpacity>
       <Text style={styles.welcomeText}>
         Welcome to {'\n'}
         Revenue Raccoon! {'\n'}
@@ -39,18 +52,25 @@ const Register = () => {
         {/* Add icons or buttons for login with other services here */}
         <Text style={styles.loginWithText}>Or Login with</Text>
       </View>
+      
 
       <TouchableOpacity style={styles.registerButton}>
         <Text style={styles.registerButtonText}>Agree and Register</Text>
       </TouchableOpacity>
 
-      <Image source={{ uri: 'https://via.placeholder.com/27x27' }} style={styles.image} />
+    
 
       <View style={styles.termsContainer}>
-        <View style={styles.checkbox}></View>
+        <CheckBox
+          value={isSelected}
+          onValueChange={setSelection}
+          style={styles.checkbox}
+        />
         <Text style={styles.termsText}>I agree to the </Text>
         <Text style={styles.termsLink}>Terms and Conditions</Text>
       </View>
+    
+  
     </View>
   );
 };

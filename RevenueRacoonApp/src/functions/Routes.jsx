@@ -18,8 +18,8 @@ function Routes() {
           component={Register} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
         />
-
-        {/* <Stack.Screen 
+{/* 
+        <Stack.Screen 
           name="openLoginOrRegister" 
           component={openLoginOrRegister} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
@@ -29,11 +29,11 @@ function Routes() {
           component={BeginScreen} 
           options={{ headerShown: false }}
         /> */}
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="TryComponent" 
           component={TryComponent} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
-        />
+        /> */}
         {/* <Stack.Screen 
           name="Store page" 
           component={StorePage} 

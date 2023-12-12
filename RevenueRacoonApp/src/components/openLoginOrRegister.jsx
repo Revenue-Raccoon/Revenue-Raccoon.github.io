@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../styles/openLoginOrRegisterStyle';
-
+import {LinearGradient} from 'expo-linear-gradient';
 const openLoginOrRegister = () => {
     
     return (
@@ -10,6 +10,12 @@ const openLoginOrRegister = () => {
             <Image source={{ uri: "https://i.ibb.co/Hh1Ly5T/image.png" }} style={styles.backgroundImage} 
             resizeMode="cover"/>
 
+<LinearGradient
+      colors={[ 'rgba(143, 0, 255, 0.80)', 'rgba(0, 0, 0, 0)']}
+      style={styles.bottomGradient}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+    />
             {/* כפתור התחברות */}
             <TouchableOpacity style={styles.loginButton}>
                 <Text style={styles.loginText}>Login</Text>

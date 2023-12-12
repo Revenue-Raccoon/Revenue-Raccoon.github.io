@@ -8,15 +8,21 @@ const openLoginOrRegisterStyle = StyleSheet.create({
         alignItems: 'center', // ממרכז את התוכן אופקית
         justifyContent: 'center', // ממרכז את התוכן אנכית
     },
-    
+    bottomGradient: {
+        width: screenWidth,
+        height: 144,
+        position: 'absolute',
+        bottom: 0,
+        transform: [{ rotate: '179.91deg' }],
+      },
     backgroundImage: {
         width: screenWidth, 
-        height: 384, 
+        height: 400, 
         position: 'absolute', 
         opacity: 0.75,
         top: 1, 
         
-         // מאפשר לתמונה להתרחב על כל המסך
+        
        
     },
     loginButton: {
@@ -92,7 +98,7 @@ const openLoginOrRegisterStyle = StyleSheet.create({
         opacity: 0.85, 
         borderRadius: 120,
         top: 37,
-
+        
     }
 });
 
