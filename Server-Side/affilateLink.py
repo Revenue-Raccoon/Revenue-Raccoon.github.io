@@ -1,7 +1,6 @@
 import hashlib
 import databaseManager
 
-
 class AffiliateLink:
     def __init__(self, id, title, url, user_id):
         self.id = id
@@ -9,7 +8,7 @@ class AffiliateLink:
         self.url = url
         self.user_id = user_id
         self.peopleClicking = set()
-        databaseManager.add_affiliate_link(id, title, url, id, self.peopleClicking)
+        self.affiliateLink = AffiliateLink.from_link(self.url, self.user_id)
 
     @staticmethod
     def from_link(link, user_id):

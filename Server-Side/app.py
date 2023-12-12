@@ -135,4 +135,4 @@ def fetch_links(batch_index):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=False, log_output=True, port=8080)
+    socketio.run(app, debug=False, log_output=True, port=8080, allow_unsafe_werkzeug=True)
