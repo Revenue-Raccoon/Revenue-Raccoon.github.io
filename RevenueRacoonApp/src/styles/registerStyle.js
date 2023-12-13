@@ -27,7 +27,7 @@ const registerStyle = StyleSheet.create({
     textAlign: 'center',
     color: '#FFBF00',
     fontSize: 30,
-    fontFamily: 'Poppins-semiBold',
+    fontFamily: '',
     fontWeight: '600',
   },
   inputContainer: {
@@ -45,7 +45,7 @@ const registerStyle = StyleSheet.create({
     height: '100%',
     paddingLeft: 20,
     fontSize: 15,
-    fontFamily: 'Poppins-semiBold',
+    fontFamily: '',
   },
   loginWithContainer: {
     position: 'absolute',
@@ -57,7 +57,7 @@ const registerStyle = StyleSheet.create({
   loginWithText: {
     color: 'white',
     fontSize: 14,
-    fontFamily: 'Poppins-semiBold',
+    fontFamily: '',
   },
   registerButton: {
     position: 'absolute',
@@ -71,7 +71,7 @@ const registerStyle = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 15,
-    fontFamily: 'Poppins-semiBold',
+    fontFamily: '',//Inter
     fontWeight: '700',
     marginTop: 15,
   },
@@ -99,12 +99,12 @@ const registerStyle = StyleSheet.create({
   termsText: {
     color: 'rgba(255, 255, 255, 0.67)',
     fontSize: 13,
-    fontFamily: 'Inter',
+    fontFamily: '',//Inter
   },
   termsLink: {
     color: '#FFBF00',
     fontSize: 13,
-    fontFamily: 'Inter',
+    fontFamily: '',//Inter
   },
   bottomGradient: {
     width: screenWidth,
