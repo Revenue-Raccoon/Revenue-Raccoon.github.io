@@ -1,5 +1,8 @@
+from affilateLink import AffiliateLink
 from dataBaseConstetnts import *
 from link import Link
+
+
 # Modify the get_link function
 def get_link(url: str) -> Link:
     with get_connection() as connection:
@@ -23,6 +26,7 @@ def get_link(url: str) -> Link:
             return link
         else:
             return None
+
 
 def add_link(link: Link):
     with get_connection() as connection:
@@ -52,14 +56,15 @@ def get_affiliate_links_by_url(url):
         return rows  # Each row represents an affiliate link
 
 
-def add_affiliate_link(id, title, url, user_id, people_clicking, affilateLink):
+def add_affiliate_link(affLink: AffiliateLink):
     with get_connection() as connection:
         cursor = connection.cursor()
-        people_clicking_str = ','.join(people_clicking) if people_clicking else ''
+        people_clicking_str = ','.join(affLink.peopleClicking) if affLink.peopleClicking else ''
         query = f"INSERT INTO {AFFILATE_TABLE} (id, title, url, user_id, people_clicking, affilateLink) VALUES (?, ?, ?, ?, ?)"
-        cursor.execute(query, (id, title, url, user_id, people_clicking_str, affilateLink))
+        cursor.execute(query, (
+        affLink.id, affLink.title, affLink.url, affLink.user_id,  affLink.peopleClicking, affLink.affiliateLink))
         connection.commit()
-
+        print("aded")
 
 
 def add_ip_to_affiliate_link(ip_address, url):
@@ -91,7 +96,7 @@ def get_ip_list_of_affiliate_link(url):
             return []
 
 
-def get_url_of_affiliate_link(affiliate_link : str):
+def get_url_of_affiliate_link(affiliate_link: str):
     with get_connection() as connection:
         cursor = connection.cursor()
         query = f"SELECT url FROM {AFFILATE_TABLE} WHERE affilateLink = ?"

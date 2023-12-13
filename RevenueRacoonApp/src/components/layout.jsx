@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { getUserObject } from '../functions/getUserFromFirebase'; // Replace with the actual path to your utility file
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook from React Navigation
 import Navbar from "../components/Navbar"; // Adjust the path as needed
+import globals from '../globals'; // Import the global variable
 
 const Layout = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
       {/* Assuming Navbar is a React Native compatible component */}
       <Navbar />
       <View style={{ flex: 1 }}> {/* Using View to wrap children */}
-        {user ? children : null}
+        {globals.userId ? children : null}
       </View>
     </SafeAreaView>
   );

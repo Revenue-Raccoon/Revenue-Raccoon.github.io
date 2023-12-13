@@ -1,8 +1,20 @@
-from flask import Flask, request
-from flask_socketio import SocketIO, emit
-from databaseManager import *
 import json
+
+import firebase_admin
+from firebase_admin import auth
+from firebase_admin import credentials
+from flask import Flask, request, jsonify
+from flask_socketio import SocketIO, emit
+
+from databaseManager import *
+from linkDBmanage import *
+
+# Initialize Firebase Admin SDK
+cred = credentials.Certificate("firebaseKey.json")
+
+firebase_admin.initialize_app(cred)
 app = Flask(__name__)
+
 socketio = SocketIO(app, cors_allowed_origins="*")  # Replace with your frontend's URL
 
 
@@ -64,7 +76,7 @@ def get_messages_to_chat(get_data):
     # Retrieve messages in the chat starting from the given message_count
     messages = get_messages_in_chat(chat_id)
     print(f"messages: {messages}")
-    
+
     # Check if message_count is within the valid range
     if message_count >= 0 and message_count < len(messages):
         # Send the messages to the client starting from message_count
@@ -73,7 +85,7 @@ def get_messages_to_chat(get_data):
         # Handle invalid message_count (e.g., send an error message)
         emit('error', {'message': 'Invalid message count or chat ID'})
 
-    
+
 @socketio.on('userSignUp')
 def handle_user_connected(user_id):
     print("send yser")
@@ -86,7 +98,6 @@ def handle_user_connected(user_id):
         print("unsecsede")
         # If the function returns False, emit a "userConnectedFailure" event
         emit('userConnectedStatus', {'message': 'User creation failed'}, room=request.sid)
-
 
 
 @socketio.on('get_messages_to_chat')
@@ -110,6 +121,7 @@ def get_messages_to_chat(get_data):
     # Send the JSON data as a string
     emit('chat_messages', {'messages': json.dumps(formatted_messages)}, room=request.sid)
 
+
 @socketio.on('fetchLinks')
 def fetch_links(batch_index):
     link_ids = list(range(batch_index, batch_index + 10))
@@ -119,20 +131,77 @@ def fetch_links(batch_index):
     # Emit the updated data to the client
 
     formatted_messages = [{
-            "title": link.title,
-            "price_per_customer": link.price_per_customer,
-            "profit_for_sale": link.profit_for_sale,
-            "link": link.link,
-            "description": link.description,
-            "money_made": link.money_made,
-            "related_tags": link.related_tags,
-            "people_using_link": link.people_using_link,
-            "image": link.image,
-            "id": link.id
+        "title": link.title,
+        "price_per_customer": link.price_per_customer,
+        "profit_for_sale": link.profit_for_sale,
+        "link": link.link,
+        "description": link.description,
+        "money_made": link.money_made,
+        "related_tags": link.related_tags,
+        "people_using_link": link.people_using_link,
+        "image": link.image,
+        "id": link.id
     } for link in detailed_links]
     emit("updateLinks", json.dumps(formatted_messages), room=request.sid)
 
 
+@app.route('/register', methods=['POST'])
+def register_user():
+    try:
+        # Get the user data from the request
+        request_data = request.get_json()
+        email = request_data.get('email')
+        password = request_data.get('password')
+
+        # Create a new user with Firebase Authentication
+        user = auth.create_user(
+            email=email,
+            password=password
+        )
+
+        # Return a success message or user information
+        return jsonify({'message': 'User registered successfully', 'user_id': user.uid})
+
+    except Exception as e:
+        # Handle registration errors (e.g., user already exists)
+        return jsonify({'error': str(e)})
+
+# Function to change user's password
+def change_user_password(user_id, new_password):
+    try:
+        # Change the user's password using Firebase Authentication
+        auth.update_user(user_id, password=new_password)
+        return True  # Password change successful
+    except Exception as e:
+        # Handle password change errors
+        return str(e)  # Return the error message
+
+# Your existing routes and socket.io event handlers...
+
+# Route to change user's password
+@app.route('/change_password', methods=['POST'])
+def change_password_route():
+    try:
+        # Get the user data from the request
+        request_data = request.get_json()
+        user_id = request_data.get('user_id')
+        new_password = request_data.get('new_password')
+
+        # Call the change_user_password function
+        result = change_user_password(user_id, new_password)
+
+        if result is True:
+            # Return a success message for password change
+            return jsonify({'message': 'Password changed successfully'})
+        else:
+            # Return an error message for password change failure
+            return jsonify({'error': result})
+
+    except Exception as e:
+        # Handle any other exceptions
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
+    link = AffiliateLink(0, "hey", "https://open.spotify.com/playlist/37i9dQZF1FabuDyM0ZQCmS", "90")
+    add_affiliate_link(link)
     socketio.run(app, debug=False, log_output=True, port=8080, allow_unsafe_werkzeug=True)
