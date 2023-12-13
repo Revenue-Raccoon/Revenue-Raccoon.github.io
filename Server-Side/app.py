@@ -10,7 +10,7 @@ from databaseManager import *
 from linkDBmanage import *
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("firebaseKey.json")
+cred = credentials.Certificate("Server-Side/firebaseKey.json")
 
 firebase_admin.initialize_app(cred)
 app = Flask(__name__)
@@ -202,6 +202,4 @@ def change_password_route():
         return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
-    link = AffiliateLink(0, "hey", "https://open.spotify.com/playlist/37i9dQZF1FabuDyM0ZQCmS", "90")
-    add_affiliate_link(link)
     socketio.run(app, debug=False, log_output=True, port=8080, allow_unsafe_werkzeug=True)

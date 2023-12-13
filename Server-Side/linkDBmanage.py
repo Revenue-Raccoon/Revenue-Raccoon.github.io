@@ -60,11 +60,10 @@ def add_affiliate_link(affLink: AffiliateLink):
     with get_connection() as connection:
         cursor = connection.cursor()
         people_clicking_str = ','.join(affLink.peopleClicking) if affLink.peopleClicking else ''
-        query = f"INSERT INTO {AFFILATE_TABLE} (id, title, url, user_id, people_clicking, affilateLink) VALUES (?, ?, ?, ?, ?)"
+        query = f"INSERT INTO {AFFILATE_TABLE} (id, title, url, user_id, people_clicking, affilateLink) VALUES (?, ?, ?, ?, ?, ?)"
         cursor.execute(query, (
-        affLink.id, affLink.title, affLink.url, affLink.user_id,  affLink.peopleClicking, affLink.affiliateLink))
+        affLink.id, affLink.title, affLink.url, affLink.user_id,  people_clicking_str, affLink.affiliateLink))
         connection.commit()
-        print("aded")
 
 
 def add_ip_to_affiliate_link(ip_address, url):
@@ -106,3 +105,12 @@ def get_url_of_affiliate_link(affiliate_link: str):
             return result[0]  # Returns the URL
         else:
             return None
+        
+def print_table_names_sqlite():
+    with get_connection() as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+        for table in tables:
+            print(table[0])
+            
