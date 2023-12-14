@@ -1,9 +1,32 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { auth } from '../functions/firebaseConfig';
 
 const LoginScreen = () => {
+  const navigation = useNavigation(); // Get the navigation prop using useNavigation
+  // // Configure Google Sign-In (this can be done outside of the component)
+  // GoogleSignin.configure({
+  //   webClientId: '937762716736-4rh59rkg972mpgicn2cvojagsgqbc7dl.apps.googleusercontent.com', // From Google Cloud Console
+  // });
+
+  const signInWithGoogle = async () => {
+    // try {
+    //   // Get the users ID token
+    //   const { idToken } = await GoogleSignin.signIn();
+
+    //   // Create a Google credential with the token
+    //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    //   // Sign-in the user with the credential
+    //   return auth().signInWithCredential(googleCredential);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    Alert.alert("Not avelabke currently - waiting to change to real develapment");
+  };
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -26,14 +49,19 @@ const LoginScreen = () => {
         <TextInput style={styles.input} placeholder="Enter your password" secureTextEntry />
       </View>
 
-      <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
       <Text style={styles.registerText}>
-        Don’t have an account? <Text style={styles.registerTextBold}>Register Now</Text>
+        Don’t have an account? 
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.registerTextBold}>Register Now</Text>
+        </TouchableOpacity>
       </Text>
 
       <Text style={styles.orLoginWith}>Or Login with</Text>
@@ -42,7 +70,7 @@ const LoginScreen = () => {
         <TouchableOpacity style={styles.socialButton}>
           {/* Add Facebook icon here */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton}>
+        <TouchableOpacity style={styles.googleButton} onPress={signInWithGoogle}>
           <MaterialCommunityIcons name="google" size={24} color="black" />
         </TouchableOpacity>
       </View>

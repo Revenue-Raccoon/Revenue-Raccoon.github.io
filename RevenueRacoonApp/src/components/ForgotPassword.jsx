@@ -1,7 +1,21 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const ForgotPasswordScreen = () => {
+  const [email, setEmail] = useState('');
+
+  const handlePasswordReset = () => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        Alert.alert("Success", "Password reset email sent!");
+      })
+      .catch((error) => {
+        Alert.alert("Error", error.message);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.gradientTop} />
@@ -9,9 +23,15 @@ const ForgotPasswordScreen = () => {
       <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       <View style={styles.inputContainer}>
         <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Enter your email</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Enter your email"
+            placeholderTextColor="white"
+          />
         </View>
-        <TouchableOpacity style={styles.sendCodeButton}>
+        <TouchableOpacity style={styles.sendCodeButton} onPress={handlePasswordReset}>
           <Text style={styles.sendCodeText}>Send Code</Text>
         </TouchableOpacity>
       </View>
@@ -28,6 +48,15 @@ const ForgotPasswordScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  input: {
+    color: 'white',
+    height: 44, // Adjust as needed
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: 'white',
+  },
   container: {
     flex: 1,
     backgroundColor: 'black',
@@ -113,7 +142,7 @@ const styles = StyleSheet.create({
   },
   rightArrow: {
     width: 27,
-    height: 27,
+    height: 27, 
     transform: [{ rotate: '180deg' }],
   },
 });
