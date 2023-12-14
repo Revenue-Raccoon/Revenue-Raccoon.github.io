@@ -10,7 +10,7 @@ from databaseManager import *
 from linkDBmanage import *
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("Server-Side/firebaseKey.json")
+cred = credentials.Certificate("firebaseKey.json")
 
 firebase_admin.initialize_app(cred)
 app = Flask(__name__)
