@@ -7,7 +7,7 @@ import StorePage from "../pages/StorePage.jsx"
 import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
 import Register from "../components/register.jsx";
 import Login from "../components/Login.jsx";
-
+import ForgotPassword from "../components/ForgotPassword.jsx"
 const Stack = createStackNavigator();
 
 function Routes() {
@@ -15,10 +15,16 @@ function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen 
+          name="ForgotPassword" 
+          component={ForgotPassword} 
+          
+          options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
+        />
+         {/* <Stack.Screen 
           name="Login" 
           component={Login} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
-        />
+        /> */}
       {/* <Stack.Screen 
           name="Register" 
           component={Register} 

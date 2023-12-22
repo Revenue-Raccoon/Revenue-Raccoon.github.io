@@ -23,7 +23,7 @@ const registerStyle = StyleSheet.create({
   },
   welcomeText: {
     position: 'absolute',
-    top: 69,
+    top: 90,
     textAlign: 'center',
     color: '#FFBF00',
     fontSize: 30,
@@ -32,7 +32,7 @@ const registerStyle = StyleSheet.create({
   },
   inputContainer: {
     position: 'absolute',
-    top: 208.86, // Adjust as needed
+    top: 300, // Adjust as needed
     width: screenWidth - 48,
     height: 50.41,
     backgroundColor: 'white',
@@ -77,7 +77,7 @@ const registerStyle = StyleSheet.create({
   },
   image: {
     position: 'absolute',
-    top: 96, // Adjust as needed
+    top: 120, // Adjust as needed
     width: 27,
     height: 27,
   },

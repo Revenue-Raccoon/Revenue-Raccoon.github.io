@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { FontAwesome,MaterialCommunityIcons } from '@expo/vector-icons';
+import GoogleSignInButton from './GoogleIconSignIn';
+import FacebookSignInButton from './FacebookIconLogin';
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
@@ -12,13 +13,19 @@ const LoginScreen = () => {
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
       />
+      
       <LinearGradient
         colors={['rgba(143, 0, 255, 0.80)', 'rgba(0, 0, 0, 0)']}
         style={styles.bottomGradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
       />
-
+ <TouchableOpacity style={styles.backButton}>
+        <Image
+          source={{ uri: 'https://i.ibb.co/MMxMb4b/image.png' }}
+          style={styles.backButtonImage}
+        />
+      </TouchableOpacity>
       <Text style={styles.welcomeText}>Welcome back! Glad to see you, Again!</Text>
 
       <View style={styles.inputContainer}>
@@ -32,20 +39,23 @@ const LoginScreen = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
+ 
+      <View style={styles.loginWithContainer}>
+        <View style={styles.line} />
+        <Text style={styles.orLoginWith}>Or Login with</Text>
+        <View style={styles.line} />
+      </View>
+      <View style={styles.socialButtonsContainer}>
+        {/* <TouchableOpacity style={styles.socialButton}>
+        <FontAwesome name="facebook" size={24} color="blue" />
+        </TouchableOpacity> */}
+      
+        <GoogleSignInButton/>
+        <FacebookSignInButton/>
+      </View>
       <Text style={styles.registerText}>
         Don’t have an account? <Text style={styles.registerTextBold}>Register Now</Text>
       </Text>
-
-      <Text style={styles.orLoginWith}>Or Login with</Text>
-
-      <View style={styles.socialButtonsContainer}>
-        <TouchableOpacity style={styles.socialButton}>
-          {/* Add Facebook icon here */}
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton}>
-          <MaterialCommunityIcons name="google" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -56,6 +66,50 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 120, // מרחק מהחלק העליון של המסך
+    left: 10, // מרחק מהצד השמאלי של המסך
+    zIndex: 10, // וודא שהוא מעל לאלמנטים אחרים
+  },
+
+  backButtonImage: {
+    width: 27, // גודל האייקון
+    height: 27, // גודל האייקון
+    resizeMode: 'contain',
+  },
+  loginWithContainer: {
+    flexDirection: 'row',
+    alignItems: 'center', // מאזן את הפריטים במרכז האנכי
+    marginTop: 16,
+  },
+  orLoginWith: {
+    color: 'white',
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    paddingHorizontal: 20, // גדל את המרווח האופקי ליצירת מרחק גדול יותר מהקווים
+    alignSelf: 'center',
+  },
+  button1: {
+    width: 27,
+    height: 27,
+    position: 'absolute',
+    top: 30, // תואם לעיצוב שלך
+    width: screenWidth - 48 , // צמוד לצד שמאל של המסך
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  
+  line: {
+    flex: 1,
+    height: 1,
+  },
+
+  buttonContainer: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 39,
   },
   topGradient: {
     width: screenWidth,
@@ -122,9 +176,9 @@ const styles = StyleSheet.create({
     marginTop: 16, // Reduced margin top
   },
   socialButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 16, // Reduced margin top
+    flexDirection: 'column', // שינוי מ-row ל-column
+    justifyContent: 'center',
+    marginTop: 16,
   },
   socialButton: {
     // Style for social buttons
@@ -132,6 +186,7 @@ const styles = StyleSheet.create({
   googleButton: {
     // Style for Google button
   },
+ 
   // Add any additional styles you need
 });
 

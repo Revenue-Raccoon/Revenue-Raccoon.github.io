@@ -1,120 +1,121 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ForgotPasswordScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.gradientTop} />
-      <View style={styles.gradientBottom} />
-      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      <View style={styles.inputContainer}>
-        <View style={styles.inputBox}>
-          <Text style={styles.inputLabel}>Enter your email</Text>
-        </View>
-        <TouchableOpacity style={styles.sendCodeButton}>
-          <Text style={styles.sendCodeText}>Send Code</Text>
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.rememberPasswordText}>
-        <Text style={styles.whiteText}>Remember Password? </Text>
-        <Text style={styles.yellowText}>Login</Text>
-      </Text>
-      <Image
-        source={{ uri: 'https://via.placeholder.com/27x27' }}
-        style={styles.rightArrow}
+      <LinearGradient
+        colors={['#6600B7', 'rgba(0, 0, 0, 0.00)']}
+        style={styles.topGradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
       />
+      
+      <LinearGradient
+        colors={['#6600B7', 'rgba(0, 0, 0, 0.00)']}
+        style={styles.bottomGradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+      />
+
+      <TouchableOpacity style={styles.backButton}>
+        <Image
+          source={{ uri: 'https://i.ibb.co/MMxMb4b/image.png' }}
+          style={styles.backButtonImage}
+        />
+      </TouchableOpacity>
+
+      {/* Content starts below the back button image */}
+      <Text style={styles.forgotPasswordText}>Forgot  {'\n'} Password?</Text>
+      <Text style={styles.textStyle}>
+        Don't worry! It occurs. Please enter the email address linked with your account.
+      </Text>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} placeholder="Enter your email" />
+      </View>
+      <TouchableOpacity style={styles.sendCodeButton}>
+        <Text style={styles.sendCodeText}>Send Code</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 150, // Adjust this to position content below the back button image
   },
-  gradientTop: {
-    width: '100%',
+  topGradient: {
+    width: screenWidth,
     height: 144,
+    left: 0,
+    top: -3,
     position: 'absolute',
-    backgroundColor: '#6600B7',
   },
-  gradientBottom: {
-    width: '100%',
+  bottomGradient: {
+    width: screenWidth,
     height: 144,
     position: 'absolute',
     bottom: 0,
-    transform: [{ rotate: '180deg' }],
-    backgroundColor: '#6600B7',
+    transform: [{ rotate: '179.91deg' }],
+  },
+  backButton: {
+    position: 'absolute',
+    top: 120,
+    left: 10,
+    zIndex: 10,
+  },
+  backButtonImage: {
+    width: 27,
+    height: 27,
+    resizeMode: 'contain',
   },
   forgotPasswordText: {
     color: '#FFBF00',
-    fontSize: 30,
-    fontFamily: 'Poppins',
+    fontSize: 40,
     fontWeight: '600',
     lineHeight: 39,
     textAlign: 'center',
-    marginTop: 99,
+    marginTop: 20, // Adjust as needed
+  },
+  textStyle: {
+    width: screenWidth - 48,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '400',
+    lineHeight: 24,
+    marginTop: 20, // Adjust as needed
   },
   inputContainer: {
-    marginTop: 194,
-    alignItems: 'center',
+    marginTop: 20, // Adjust as needed
   },
-  inputBox: {
-    width: 316.8,
+  input: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8, 
+    width: screenWidth - 48,
+  },
+  sendCodeButton: {
+    width: screenWidth - 48,
     height: 44.14,
     backgroundColor: '#8F00FF',
     borderRadius: 8,
-    marginBottom: 15,
-  },
-  inputLabel: {
-    color: 'black',
-    fontSize: 15,
-    fontFamily: 'Urbanist',
-    fontWeight: '500',
-    lineHeight: 18.75,
-    textAlign: 'center',
-  },
-  sendCodeButton: {
-    width: 83,
-    height: 44.14,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20, // Adjust as needed
   },
   sendCodeText: {
-    color: 'black',
+    color: 'white',
     fontSize: 15,
-    fontFamily: 'Poppins',
     fontWeight: '600',
     textAlign: 'center',
-    lineHeight: 18.75,
-  },
-  rememberPasswordText: {
-    textAlign: 'center',
-    marginTop: 21,
-    color: 'white',
-  },
-  whiteText: {
-    color: 'white',
-    fontSize: 15,
-    fontFamily: 'Poppins',
-    fontWeight: '500',
-    lineHeight: 21,
-  },
-  yellowText: {
-    color: '#FFBF00',
-    fontSize: 15,
-    fontFamily: 'Poppins',
-    fontWeight: '500',
-    lineHeight: 21,
-  },
-  rightArrow: {
-    width: 27,
-    height: 27,
-    transform: [{ rotate: '180deg' }],
   },
 });
 

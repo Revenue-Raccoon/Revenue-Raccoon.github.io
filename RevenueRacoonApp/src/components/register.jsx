@@ -4,6 +4,9 @@ import CheckBox from 'expo-checkbox';
 import styles from '../styles/registerStyle';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import IconFacebookRegister from '../components/IconFacebookRegister';
+import IconGoogleRegister from '../components/IconGoogleRegister';
+
 // ... other necessary imports ..
 const Register = () => {
   const [isSelected, setSelection] = useState(false);
@@ -29,6 +32,7 @@ const Register = () => {
         style={styles.image}
       />
     </TouchableOpacity>
+
       <Text style={styles.welcomeText}>
         Welcome to {'\n'}
         Revenue Raccoon! {'\n'}
@@ -51,6 +55,8 @@ const Register = () => {
       <View style={styles.loginWithContainer}>
         {/* Add icons or buttons for login with other services here */}
         <Text style={styles.loginWithText}>Or Login with</Text>
+        <IconFacebookRegister/>
+        <IconGoogleRegister/>
       </View>
       
 
