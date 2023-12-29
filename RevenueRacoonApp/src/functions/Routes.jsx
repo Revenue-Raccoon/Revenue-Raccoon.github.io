@@ -7,7 +7,12 @@ import StorePage from "../pages/StorePage.jsx"
 import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
 import Register from "../components/register.jsx";
 import Login from "../components/Login.jsx";
+<<<<<<< HEAD
 import ForgotPassword from "../components/ForgotPassword.jsx"
+=======
+import ForgotPasswordScreen from '../components/ForgotPassword.jsx'
+
+>>>>>>> 37026871b8298d9eaf03de94562cd797b9f2bb50
 const Stack = createStackNavigator();
 
 function Routes() {
@@ -24,7 +29,23 @@ function Routes() {
           name="Login" 
           component={Login} 
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
+<<<<<<< HEAD
         /> */}
+=======
+        />
+
+      <Stack.Screen 
+          name='ForgotPassword'
+          component={ForgotPasswordScreen}
+          options={{ headerShown: false }}
+      />
+      
+      <Stack.Screen 
+          name='Register'
+          component={Register}
+          options={{ headerShown: false }}
+      />
+>>>>>>> 37026871b8298d9eaf03de94562cd797b9f2bb50
       {/* <Stack.Screen 
           name="Register" 
           component={Register} 

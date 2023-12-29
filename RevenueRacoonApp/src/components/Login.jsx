@@ -5,6 +5,27 @@ import { FontAwesome,MaterialCommunityIcons } from '@expo/vector-icons';
 import GoogleSignInButton from './GoogleIconSignIn';
 import FacebookSignInButton from './FacebookIconLogin';
 const LoginScreen = () => {
+  const navigation = useNavigation(); // Get the navigation prop using useNavigation
+  // // Configure Google Sign-In (this can be done outside of the component)
+  // GoogleSignin.configure({
+  //   webClientId: '937762716736-4rh59rkg972mpgicn2cvojagsgqbc7dl.apps.googleusercontent.com', // From Google Cloud Console
+  // });
+
+  const signInWithGoogle = async () => {
+    // try {
+    //   // Get the users ID token
+    //   const { idToken } = await GoogleSignin.signIn();
+
+    //   // Create a Google credential with the token
+    //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    //   // Sign-in the user with the credential
+    //   return auth().signInWithCredential(googleCredential);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    Alert.alert("Not avelabke currently - waiting to change to real develapment");
+  };
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -33,7 +54,9 @@ const LoginScreen = () => {
         <TextInput style={styles.input} placeholder="Enter your password" secureTextEntry />
       </View>
 
-      <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>

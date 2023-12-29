@@ -3,6 +3,18 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput 
 import { LinearGradient } from 'expo-linear-gradient';
 
 const ForgotPasswordScreen = () => {
+  const [email, setEmail] = useState('');
+
+  const handlePasswordReset = () => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        Alert.alert("Success", "Password reset email sent!");
+      })
+      .catch((error) => {
+        Alert.alert("Error", error.message);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -44,6 +56,15 @@ const ForgotPasswordScreen = () => {
 const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
+  input: {
+    color: 'white',
+    height: 44, // Adjust as needed
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: 'white',
+  },
   container: {
     flex: 1,
     backgroundColor: 'black',
