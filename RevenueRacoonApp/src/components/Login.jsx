@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Image, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome,MaterialCommunityIcons } from '@expo/vector-icons';
 import GoogleSignInButton from './GoogleIconSignIn';
 import FacebookSignInButton from './FacebookIconLogin';
-import { useNavigation } from '@react-navigation/native'; // Make sure to import useNavigation
-
-
 const LoginScreen = () => {
   const navigation = useNavigation(); // Get the navigation prop using useNavigation
   // // Configure Google Sign-In (this can be done outside of the component)
