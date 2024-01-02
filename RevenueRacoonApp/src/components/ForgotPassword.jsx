@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
 
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const ForgotPasswordScreen = () => {
       .then(() => {
         Alert.alert("Success", "Password reset email sent!");
       })
-      .catch((error) => {
+      .catch((error) => { 
         Alert.alert("Error", error.message);
       });
   };

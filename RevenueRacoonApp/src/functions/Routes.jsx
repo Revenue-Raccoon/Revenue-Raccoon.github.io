@@ -2,24 +2,28 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TryComponent from "../components/try.jsx";
-// import BeginScreen from "../pages/begin.jsx"
+ import BeginScreen from "../pages/begin.jsx" 
 import StorePage from "../pages/StorePage.jsx"
 import openLoginOrRegister from "../components/openLoginOrRegister.jsx";
 import Register from "../components/register.jsx";
 import Login from "../components/Login.jsx";
-<<<<<<< HEAD
 import ForgotPassword from "../components/ForgotPassword.jsx"
-=======
 import ForgotPasswordScreen from '../components/ForgotPassword.jsx'
-
->>>>>>> 37026871b8298d9eaf03de94562cd797b9f2bb50
+import OtpVerificationScreen from '../components/OTPVerification.jsx'
 const Stack = createStackNavigator();
 
 function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen 
+          <Stack.Screen 
+          name="OtpVerificationScreen" 
+          component={OtpVerificationScreen} 
+          
+          options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
+        />
+
+      {/* <Stack.Screen 
           name="ForgotPassword" 
           component={ForgotPassword} 
           
@@ -31,10 +35,10 @@ function Routes() {
           options={{ headerShown: false }} // הסתרת ה-Navigation Bar למסך הזה
 <<<<<<< HEAD
         /> */}
-=======
-        />
 
-      <Stack.Screen 
+      
+
+      {/* <Stack.Screen 
           name='ForgotPassword'
           component={ForgotPasswordScreen}
           options={{ headerShown: false }}
@@ -44,8 +48,8 @@ function Routes() {
           name='Register'
           component={Register}
           options={{ headerShown: false }}
-      />
->>>>>>> 37026871b8298d9eaf03de94562cd797b9f2bb50
+      /> */}
+
       {/* <Stack.Screen 
           name="Register" 
           component={Register} 
