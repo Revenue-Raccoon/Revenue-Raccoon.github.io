@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native'; // Removed CheckBox from here
+import { View, Text, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
 import CheckBox from 'expo-checkbox';
 import styles from '../styles/registerStyle';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +10,32 @@ import IconGoogleRegister from '../components/IconGoogleRegister';
 // ... other necessary imports ..
 const Register = () => {
   const [isSelected, setSelection] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleRegister = () => {
+    if (!isSelected) {
+      Alert.alert("Error", "Please agree to the Terms and Conditions.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert("Error", "Passwords do not match.");
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Registered successfully
+        const user = userCredential.user;
+        Alert.alert("Success", "Registration successful!");
+        // Additional logic after successful registration (optional)
+      })
+      .catch((error) => {
+        Alert.alert("Error", error.message);
+      });
+  };
   return (
     <View style={styles.container}>
        <LinearGradient
@@ -59,7 +85,28 @@ const Register = () => {
         <IconGoogleRegister/>
       </View>
       
+      <TextInput 
+        placeholder="Email" 
+        style={styles.input}
+        onChangeText={setEmail} 
+        value={email} 
+      />
+      <TextInput 
+        placeholder="Password" 
+        secureTextEntry={true} 
+        style={styles.input}
+        onChangeText={setPassword} 
+        value={password} 
+      />
+      <TextInput 
+        placeholder="Confirm Password" 
+        secureTextEntry={true} 
+        style={styles.input}
+        onChangeText={setConfirmPassword} 
+        value={confirmPassword} 
+      />
 
+      
       <TouchableOpacity style={styles.registerButton}>
         <Text style={styles.registerButtonText}>Agree and Register</Text>
       </TouchableOpacity>
@@ -75,6 +122,8 @@ const Register = () => {
         <Text style={styles.termsText}>I agree to the </Text>
         <Text style={styles.termsLink}>Terms and Conditions</Text>
       </View>
+
+      
     
   
     </View>
